@@ -1,0 +1,235 @@
+﻿# =====================================================================
+# Reparto de Títulos - decisiones (solo jugador, sin coste, sin IA)
+# =====================================================================
+
+# 1. Transferir vasallos a su señor de iure
+rtg_transfer_vassals_decision = {
+	picture = { reference = "gfx/interface/illustrations/decisions/decision_misc.dds" }
+	desc = rtg_transfer_vassals_decision_desc
+	selection_tooltip = rtg_transfer_vassals_decision_tooltip
+	decision_group_type = rtg
+
+	is_shown = {
+		is_ai = no
+		highest_held_title_tier >= tier_duchy
+	}
+	is_valid = {
+		any_vassal = { is_landed = yes }
+	}
+	effect = {
+		custom_tooltip = rtg_transfer_vassals_decision_effect_tt
+		hidden_effect = { rtg_transfer_vassals_to_de_jure_liege_effect = { LIEGE = root } }
+	}
+	ai_check_interval = 0
+	ai_potential = { always = no }
+	ai_will_do = { base = 0 }
+}
+
+# 2a. Otorgar dominios a personajes nuevos de TU cultura y fe
+rtg_grant_counties_own_culture_decision = {
+	picture = { reference = "gfx/interface/illustrations/decisions/decision_misc.dds" }
+	desc = rtg_grant_counties_own_culture_decision_desc
+	selection_tooltip = rtg_grant_counties_own_culture_decision_tooltip
+	decision_group_type = rtg
+
+	is_shown = {
+		is_ai = no
+		highest_held_title_tier >= tier_duchy
+	}
+	is_valid = {
+		custom_tooltip = {
+			text = rtg_has_counties_to_grant_tt
+			any_held_title = { rtg_can_grant_county_trigger = yes }
+		}
+	}
+	effect = {
+		custom_tooltip = rtg_grant_counties_own_culture_decision_effect_tt
+		show_as_tooltip = { rtg_preview_counties_effect = yes }
+		hidden_effect = {
+			rtg_grant_counties_to_new_characters_effect = {
+				SOURCE = root
+			}
+		}
+	}
+	ai_check_interval = 0
+	ai_potential = { always = no }
+	ai_will_do = { base = 0 }
+}
+
+# 2b. Otorgar dominios a personajes nuevos de la cultura y fe LOCAL
+rtg_grant_counties_local_culture_decision = {
+	picture = { reference = "gfx/interface/illustrations/decisions/decision_misc.dds" }
+	desc = rtg_grant_counties_local_culture_decision_desc
+	selection_tooltip = rtg_grant_counties_local_culture_decision_tooltip
+	decision_group_type = rtg
+
+	is_shown = {
+		is_ai = no
+		highest_held_title_tier >= tier_duchy
+	}
+	is_valid = {
+		custom_tooltip = {
+			text = rtg_has_counties_to_grant_tt
+			any_held_title = { rtg_can_grant_county_trigger = yes }
+		}
+	}
+	effect = {
+		custom_tooltip = rtg_grant_counties_local_culture_decision_effect_tt
+		show_as_tooltip = { rtg_preview_counties_effect = yes }
+		hidden_effect = {
+			rtg_grant_counties_to_new_characters_effect = {
+				SOURCE = scope:rtg_county
+			}
+		}
+	}
+	ai_check_interval = 0
+	ai_potential = { always = no }
+	ai_will_do = { base = 0 }
+}
+
+# 3. Crear ducados
+rtg_create_duchies_decision = {
+	picture = { reference = "gfx/interface/illustrations/decisions/decision_misc.dds" }
+	desc = rtg_create_duchies_decision_desc
+	selection_tooltip = rtg_create_duchies_decision_tooltip
+	decision_group_type = rtg
+
+	is_shown = {
+		is_ai = no
+		highest_held_title_tier >= tier_duchy
+	}
+	effect = {
+		custom_tooltip = rtg_create_duchies_decision_effect_tt
+		hidden_effect = {
+			rtg_create_titles_effect = { ITER = duchy }
+		}
+	}
+	ai_check_interval = 0
+	ai_potential = { always = no }
+	ai_will_do = { base = 0 }
+}
+
+# 4. Crear reinos (solo emperadores o superior)
+rtg_create_kingdoms_decision = {
+	picture = { reference = "gfx/interface/illustrations/decisions/decision_misc.dds" }
+	desc = rtg_create_kingdoms_decision_desc
+	selection_tooltip = rtg_create_kingdoms_decision_tooltip
+	decision_group_type = rtg
+
+	is_shown = {
+		is_ai = no
+		highest_held_title_tier >= tier_empire
+	}
+	effect = {
+		custom_tooltip = rtg_create_kingdoms_decision_effect_tt
+		hidden_effect = {
+			rtg_create_titles_effect = { ITER = kingdom }
+		}
+	}
+	ai_check_interval = 0
+	ai_potential = { always = no }
+	ai_will_do = { base = 0 }
+}
+
+# 5. Crear imperios (solo hegemones: rango por encima de imperio)
+rtg_create_empires_decision = {
+	picture = { reference = "gfx/interface/illustrations/decisions/decision_misc.dds" }
+	desc = rtg_create_empires_decision_desc
+	selection_tooltip = rtg_create_empires_decision_tooltip
+	decision_group_type = rtg
+
+	is_shown = {
+		is_ai = no
+		highest_held_title_tier > tier_empire
+	}
+	effect = {
+		custom_tooltip = rtg_create_empires_decision_effect_tt
+		hidden_effect = {
+			rtg_create_titles_effect = { ITER = empire }
+		}
+	}
+	ai_check_interval = 0
+	ai_potential = { always = no }
+	ai_will_do = { base = 0 }
+}
+
+# 6. Repartir ducados
+rtg_distribute_duchies_decision = {
+	picture = { reference = "gfx/interface/illustrations/decisions/decision_misc.dds" }
+	desc = rtg_distribute_duchies_decision_desc
+	selection_tooltip = rtg_distribute_duchies_decision_tooltip
+	decision_group_type = rtg
+
+	is_shown = {
+		is_ai = no
+		highest_held_title_tier >= tier_kingdom
+	}
+	is_valid = {
+		custom_tooltip = {
+			text = rtg_has_titles_to_distribute_tt
+			any_held_title = { tier = tier_duchy rtg_can_distribute_title_trigger = yes }
+		}
+	}
+	effect = {
+		custom_tooltip = rtg_distribute_duchies_decision_effect_tt
+		show_as_tooltip = { rtg_preview_distribution_effect = { TIER = tier_duchy } }
+		hidden_effect = { rtg_distribute_titles_effect = { TIER = tier_duchy OPINION = received_title_duchy } }
+	}
+	ai_check_interval = 0
+	ai_potential = { always = no }
+	ai_will_do = { base = 0 }
+}
+
+# 7. Repartir reinos
+rtg_distribute_kingdoms_decision = {
+	picture = { reference = "gfx/interface/illustrations/decisions/decision_misc.dds" }
+	desc = rtg_distribute_kingdoms_decision_desc
+	selection_tooltip = rtg_distribute_kingdoms_decision_tooltip
+	decision_group_type = rtg
+
+	is_shown = {
+		is_ai = no
+		highest_held_title_tier >= tier_empire
+	}
+	is_valid = {
+		custom_tooltip = {
+			text = rtg_has_titles_to_distribute_tt
+			any_held_title = { tier = tier_kingdom rtg_can_distribute_title_trigger = yes }
+		}
+	}
+	effect = {
+		custom_tooltip = rtg_distribute_kingdoms_decision_effect_tt
+		show_as_tooltip = { rtg_preview_distribution_effect = { TIER = tier_kingdom } }
+		hidden_effect = { rtg_distribute_titles_effect = { TIER = tier_kingdom OPINION = received_title_kingdom } }
+	}
+	ai_check_interval = 0
+	ai_potential = { always = no }
+	ai_will_do = { base = 0 }
+}
+
+# 8. Repartir imperios
+rtg_distribute_empires_decision = {
+	picture = { reference = "gfx/interface/illustrations/decisions/decision_misc.dds" }
+	desc = rtg_distribute_empires_decision_desc
+	selection_tooltip = rtg_distribute_empires_decision_tooltip
+	decision_group_type = rtg
+
+	is_shown = {
+		is_ai = no
+		highest_held_title_tier > tier_empire
+	}
+	is_valid = {
+		custom_tooltip = {
+			text = rtg_has_titles_to_distribute_tt
+			any_held_title = { tier = tier_empire rtg_can_distribute_title_trigger = yes }
+		}
+	}
+	effect = {
+		custom_tooltip = rtg_distribute_empires_decision_effect_tt
+		show_as_tooltip = { rtg_preview_distribution_effect = { TIER = tier_empire } }
+		hidden_effect = { rtg_distribute_titles_effect = { TIER = tier_empire OPINION = received_title_empire } }
+	}
+	ai_check_interval = 0
+	ai_potential = { always = no }
+	ai_will_do = { base = 0 }
+}

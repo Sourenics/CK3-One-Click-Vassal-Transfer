@@ -1,0 +1,13 @@
+﻿# =====================================================================
+# Reparto de Títulos - valores de script
+# =====================================================================
+
+# Nº de condados del subreino de este personaje que están de iure
+# dentro de scope:rtg_title. Se usa como plan B para elegir receptor.
+rtg_counties_in_title_value = {
+	value = 0
+	every_sub_realm_county = {
+		limit = { target_is_de_jure_liege_or_above = scope:rtg_title }
+		add = 1
+	}
+}

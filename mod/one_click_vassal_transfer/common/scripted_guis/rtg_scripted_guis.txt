@@ -1,0 +1,9 @@
+﻿# Botón "Excluir del reparto" en la ventana de un título (gui/window_title.gui).
+# Lo ejecuta el jugador sobre el título que está viendo.
+rtg_toggle_excluded_gui = {
+	scope = landed_title
+
+	effect = {
+		rtg_toggle_excluded_effect = yes
+	}
+}

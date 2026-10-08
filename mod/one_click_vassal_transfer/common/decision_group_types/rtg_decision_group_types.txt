@@ -1,0 +1,5 @@
+﻿# Grupo propio para que todas las decisiones salgan juntas
+rtg = {
+	sort_order = 51
+	gui_tags = { big_button }
+}

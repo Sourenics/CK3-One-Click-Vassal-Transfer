@@ -1,0 +1,28 @@
+﻿# Líneas de vista previa en la sección Effects de las decisiones
+
+rtg_preview_county_new_vassal = {
+	first = rtg_preview_county_new_vassal
+	third = rtg_preview_county_new_vassal
+	global = rtg_preview_county_new_vassal
+	first_past = rtg_preview_county_new_vassal
+	third_past = rtg_preview_county_new_vassal
+	global_past = rtg_preview_county_new_vassal
+}
+
+rtg_preview_title_to_vassal = {
+	first = rtg_preview_title_to_vassal
+	third = rtg_preview_title_to_vassal
+	global = rtg_preview_title_to_vassal
+	first_past = rtg_preview_title_to_vassal
+	third_past = rtg_preview_title_to_vassal
+	global_past = rtg_preview_title_to_vassal
+}
+
+rtg_preview_title_no_recipient = {
+	first = rtg_preview_title_no_recipient
+	third = rtg_preview_title_no_recipient
+	global = rtg_preview_title_no_recipient
+	first_past = rtg_preview_title_no_recipient
+	third_past = rtg_preview_title_no_recipient
+	global_past = rtg_preview_title_no_recipient
+}

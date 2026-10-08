@@ -1,0 +1,335 @@
+﻿# =====================================================================
+# Reparto de Títulos - efectos
+# Todos se ejecutan con root = el personaje que toma la decisión.
+# Verificado contra script_docs de CK3 1.20.0.4.
+# =====================================================================
+
+# ---------------------------------------------------------------------
+# 1. TRANSFERIR VASALLOS A SU SEÑOR DE IURE
+# Cada vasallo directo de LIEGE pasa a depender del vasallo de LIEGE que
+# tenga el título de iure inmediatamente superior a su título principal
+# (o el de dos niveles por encima si el inmediato no lo tiene nadie
+# válido).
+# Parámetro: LIEGE = root / scope:rtg_recipient / ...
+# ---------------------------------------------------------------------
+rtg_transfer_vassals_to_de_jure_liege_effect = {
+	$LIEGE$ = { save_scope_as = rtg_liege }
+	scope:rtg_liege = {
+		every_vassal = {
+			limit = {
+				is_landed = yes
+				exists = primary_title.de_jure_liege
+				rtg_can_be_moved_trigger = yes
+			}
+			save_scope_as = rtg_vassal
+			primary_title = { save_scope_as = rtg_vassal_title }
+			clear_saved_scope = rtg_new_liege
+
+			# Nivel 1: señor de iure inmediato
+			if = {
+				limit = {
+					exists = scope:rtg_vassal_title.de_jure_liege.holder
+					scope:rtg_vassal_title.de_jure_liege.holder = {
+						rtg_valid_new_liege_trigger = yes
+					}
+				}
+				scope:rtg_vassal_title.de_jure_liege.holder = { save_scope_as = rtg_new_liege }
+			}
+			# Nivel 2: el de iure de dos niveles por encima
+			else_if = {
+				limit = {
+					exists = scope:rtg_vassal_title.de_jure_liege.de_jure_liege.holder
+					scope:rtg_vassal_title.de_jure_liege.de_jure_liege.holder = {
+						rtg_valid_new_liege_trigger = yes
+					}
+				}
+				scope:rtg_vassal_title.de_jure_liege.de_jure_liege.holder = { save_scope_as = rtg_new_liege }
+			}
+
+			if = {
+				limit = { exists = scope:rtg_new_liege }
+				create_title_and_vassal_change = {
+					type = swear_fealty
+					save_scope_as = rtg_change
+					add_claim_on_loss = no
+				}
+				change_liege = {
+					liege = scope:rtg_new_liege
+					change = scope:rtg_change
+				}
+				resolve_title_and_vassal_change = scope:rtg_change
+				scope:rtg_new_liege = {
+					add_opinion = { target = root modifier = granted_vassal }
+				}
+			}
+		}
+	}
+}
+
+# ---------------------------------------------------------------------
+# 2. OTORGAR DOMINIOS A PERSONAJES NUEVOS
+# Un condado = un personaje nuevo. Nunca se usan cortesanos existentes.
+# Parámetros:
+#   SOURCE = root             -> tu cultura, fe y rito
+#   SOURCE = scope:rtg_county -> cultura, fe y rito del condado
+# ---------------------------------------------------------------------
+rtg_grant_counties_to_new_characters_effect = {
+	every_held_title = {
+		limit = { rtg_can_grant_county_trigger = yes }
+		add_to_list = rtg_counties_to_grant
+	}
+	every_in_list = {
+		list = rtg_counties_to_grant
+		save_scope_as = rtg_county
+		root = {
+			create_character = {
+				location = scope:rtg_county.title_province
+				culture = $SOURCE$.culture
+				faith = $SOURCE$.faith
+				rite = $SOURCE$.rite
+				gender_female_chance = root_faith_dominant_gender_female_chance
+				age = { 18 40 }
+				dynasty = generate
+				save_scope_as = rtg_new_ruler
+			}
+			create_title_and_vassal_change = {
+				type = granted
+				save_scope_as = rtg_change
+				add_claim_on_loss = no
+			}
+			scope:rtg_county = {
+				change_title_holder_include_vassals = {
+					holder = scope:rtg_new_ruler
+					change = scope:rtg_change
+					take_baronies = yes
+					government_base = root
+				}
+			}
+			resolve_title_and_vassal_change = scope:rtg_change
+			scope:rtg_new_ruler = {
+				add_opinion = { target = root modifier = received_title_county }
+			}
+		}
+	}
+}
+
+# ---------------------------------------------------------------------
+# 3-5. CREAR TÍTULOS
+# Usa la lista de títulos creables del propio motor (la misma que alimenta
+# la alerta "Puedes crear un título"), igual que Rise and Fall. Así se
+# respetan las condiciones especiales de cada título (can_create, etc.).
+# La creación en sí es gratuita.
+# Parámetro: ITER = duchy / kingdom / empire
+# ---------------------------------------------------------------------
+rtg_create_titles_effect = {
+	every_alert_creatable_title = {
+		limit = { tier = tier_$ITER$ }
+		add_to_list = rtg_titles_to_create
+	}
+	every_in_list = {
+		list = rtg_titles_to_create
+		save_scope_as = rtg_title
+		root = {
+			create_title_and_vassal_change = {
+				type = created
+				save_scope_as = rtg_change
+				add_claim_on_loss = no
+			}
+			scope:rtg_title = {
+				change_title_holder = {
+					holder = root
+					change = scope:rtg_change
+				}
+			}
+			resolve_title_and_vassal_change = scope:rtg_change
+			if = {
+				limit = { scope:rtg_title.tier > primary_title.tier }
+				set_primary_title_to = scope:rtg_title
+			}
+		}
+	}
+}
+
+# ---------------------------------------------------------------------
+# 6-8. REPARTIR TÍTULOS
+# Receptor preferente: el vasallo directo de root en cuyo subreino está
+# la capital de iure del título (el titular de la capital o su señor).
+# Plan B: el vasallo directo con más condados de iure del título.
+# Tras el reparto, los vasallos de iure pasan al receptor y se ordenan
+# bajo él.
+# Parámetros:
+#   TIER    = tier_duchy / tier_kingdom / tier_empire
+#   OPINION = received_title_duchy / received_title_kingdom / received_title_empire
+# ---------------------------------------------------------------------
+rtg_distribute_titles_effect = {
+	every_held_title = {
+		limit = {
+			tier = $TIER$
+			rtg_can_distribute_title_trigger = yes
+		}
+		add_to_list = rtg_titles_to_distribute
+	}
+	every_in_list = {
+		list = rtg_titles_to_distribute
+		save_scope_as = rtg_title
+		root = {
+			rtg_find_recipient_effect = yes
+			if = {
+				limit = { exists = scope:rtg_recipient }
+				create_title_and_vassal_change = {
+					type = granted
+					save_scope_as = rtg_change
+					add_claim_on_loss = no
+				}
+				scope:rtg_title = {
+					change_title_holder_include_vassals = {
+						holder = scope:rtg_recipient
+						change = scope:rtg_change
+					}
+				}
+				resolve_title_and_vassal_change = scope:rtg_change
+				scope:rtg_recipient = {
+					add_opinion = { target = root modifier = $OPINION$ }
+				}
+				rtg_move_de_jure_vassals_to_recipient_effect = yes
+			}
+		}
+	}
+}
+
+# Requiere scope:rtg_title. Deja el receptor en scope:rtg_recipient.
+rtg_find_recipient_effect = {
+	clear_saved_scope = rtg_recipient
+	clear_saved_scope = rtg_cap_holder
+	clear_saved_scope = rtg_candidate
+
+	if = {
+		limit = { exists = scope:rtg_title.title_capital_county.holder }
+		scope:rtg_title.title_capital_county.holder = { save_scope_as = rtg_cap_holder }
+	}
+
+	# Plan A: quien gobierna la capital de iure, subiendo hasta tu vasallo directo
+	if = {
+		limit = {
+			exists = scope:rtg_cap_holder
+			NOT = { scope:rtg_cap_holder = root }
+		}
+		scope:rtg_cap_holder = {
+			if = {
+				limit = { exists = liege liege = root }
+				save_scope_as = rtg_candidate
+			}
+			else_if = {
+				limit = { exists = liege.liege liege.liege = root }
+				liege = { save_scope_as = rtg_candidate }
+			}
+			else_if = {
+				limit = { exists = liege.liege.liege liege.liege.liege = root }
+				liege.liege = { save_scope_as = rtg_candidate }
+			}
+		}
+	}
+	if = {
+		limit = {
+			exists = scope:rtg_candidate
+			scope:rtg_candidate = { rtg_valid_recipient_trigger = yes }
+		}
+		scope:rtg_candidate = { save_scope_as = rtg_recipient }
+	}
+
+	# Plan B: el vasallo directo válido con más condados de iure del título
+	if = {
+		limit = { NOT = { exists = scope:rtg_recipient } }
+		ordered_vassal = {
+			limit = {
+				rtg_valid_recipient_trigger = yes
+				rtg_counties_in_title_value > 0
+			}
+			order_by = rtg_counties_in_title_value
+			save_scope_as = rtg_recipient
+		}
+	}
+}
+
+# Requiere scope:rtg_title y scope:rtg_recipient (ya titular de rtg_title).
+# 1) Red de seguridad: los vasallos directos de root cuyo título principal
+#    está de iure dentro de rtg_title y que no se hayan movido ya pasan al
+#    receptor.
+# 2) Después se ordenan bajo el receptor (condes bajo sus duques, etc.).
+rtg_move_de_jure_vassals_to_recipient_effect = {
+	every_vassal = {
+		limit = {
+			NOT = { this = scope:rtg_recipient }
+			is_landed = yes
+			rtg_can_be_moved_trigger = yes
+			primary_title = { target_is_de_jure_liege_or_above = scope:rtg_title }
+			highest_held_title_tier < scope:rtg_title.tier
+		}
+		create_title_and_vassal_change = {
+			type = swear_fealty
+			save_scope_as = rtg_change
+			add_claim_on_loss = no
+		}
+		change_liege = {
+			liege = scope:rtg_recipient
+			change = scope:rtg_change
+		}
+		resolve_title_and_vassal_change = scope:rtg_change
+	}
+	rtg_transfer_vassals_to_de_jure_liege_effect = { LIEGE = scope:rtg_recipient }
+}
+
+# ---------------------------------------------------------------------
+# EXCLUIR / INCLUIR UN TÍTULO EN EL REPARTO (scope: título)
+# ---------------------------------------------------------------------
+rtg_toggle_excluded_effect = {
+	if = {
+		limit = { has_variable = rtg_excluded_from_distribution }
+		remove_variable = rtg_excluded_from_distribution
+		custom_tooltip = rtg_title_included_tt
+	}
+	else = {
+		set_variable = { name = rtg_excluded_from_distribution value = 1 }
+		custom_tooltip = rtg_title_excluded_tt
+	}
+}
+
+# ---------------------------------------------------------------------
+# VISTAS PREVIAS (solo tooltip, usar dentro de show_as_tooltip)
+# Listan en "Effects" qué títulos se van a repartir y a quién.
+# ---------------------------------------------------------------------
+rtg_preview_counties_effect = {
+	every_held_title = {
+		limit = { rtg_can_grant_county_trigger = yes }
+		custom_description = {
+			text = rtg_preview_county_new_vassal
+			subject = this
+		}
+	}
+}
+
+# Parámetro: TIER = tier_duchy / tier_kingdom / tier_empire
+rtg_preview_distribution_effect = {
+	every_held_title = {
+		limit = {
+			tier = $TIER$
+			rtg_can_distribute_title_trigger = yes
+		}
+		save_scope_as = rtg_title
+		root = { rtg_find_recipient_effect = yes }
+		if = {
+			limit = { exists = scope:rtg_recipient }
+			custom_description = {
+				text = rtg_preview_title_to_vassal
+				subject = scope:rtg_title
+				object = scope:rtg_recipient
+			}
+		}
+		else = {
+			custom_description = {
+				text = rtg_preview_title_no_recipient
+				subject = scope:rtg_title
+			}
+		}
+	}
+}

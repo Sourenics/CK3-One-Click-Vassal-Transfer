@@ -1,0 +1,60 @@
+﻿# =====================================================================
+# Reparto de Títulos - triggers
+# =====================================================================
+
+# Scope: título que root tiene. ¿Se puede repartir?
+# Nunca el título principal ni el que contiene de iure tu capital.
+rtg_can_distribute_title_trigger = {
+	NOT = { has_variable = rtg_excluded_from_distribution }
+	NOT = { this = root.primary_title }
+	NOT = {
+		any_de_jure_county = { this = root.capital_province.county }
+	}
+}
+
+# Scope: condado que root tiene. ¿Se puede otorgar a un nuevo vasallo?
+rtg_can_grant_county_trigger = {
+	tier = tier_county
+	NOT = { has_variable = rtg_excluded_from_distribution }
+	NOT = { this = root.capital_province.county }
+}
+
+# Scope: vasallo directo de root. ¿Puede recibir un título repartido?
+rtg_valid_recipient_trigger = {
+	is_landed = yes
+	is_adult = yes
+	is_imprisoned = no
+	is_incapable = no
+	NOT = { is_at_war_with = root }
+	# Un teócrata solo recibe títulos si tú también lo eres
+	OR = {
+		NOT = { government_has_flag = government_is_theocracy }
+		root = { government_has_flag = government_is_theocracy }
+	}
+}
+
+# Scope: vasallo. ¿Se le puede cambiar de señor sin romper nada?
+rtg_can_be_moved_trigger = {
+	NOT = { is_at_war_with = root }
+	NOT = { any_vassal_or_below = { is_at_war_with = root } }
+	# El líder de una confederación de casas (nómadas) no se mueve
+	NAND = {
+		is_house_head = yes
+		exists = house.house_confederation
+		house.house_confederation.leading_house = house
+	}
+}
+
+# Scope: personaje candidato a nuevo señor de scope:rtg_vassal,
+# dentro del reino de scope:rtg_liege.
+rtg_valid_new_liege_trigger = {
+	NOT = { this = scope:rtg_vassal }
+	NOT = { this = scope:rtg_liege }
+	exists = liege
+	liege = scope:rtg_liege
+	highest_held_title_tier > scope:rtg_vassal.highest_held_title_tier
+	NOR = {
+		is_at_war_with = scope:rtg_liege
+		is_at_war_with = scope:rtg_vassal
+	}
+}
