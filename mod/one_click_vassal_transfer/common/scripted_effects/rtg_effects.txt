@@ -152,9 +152,15 @@ rtg_create_titles_effect = {
 
 # ---------------------------------------------------------------------
 # 6-8. REPARTIR TÍTULOS
-# Receptor preferente: el vasallo directo de root en cuyo subreino está
-# la capital de iure del título (el titular de la capital o su señor).
-# Plan B: el vasallo directo con más condados de iure del título.
+# El receptor se elige por los títulos que posee, no por dónde vive.
+#   Plan A (en cascada): titular del reino capital (solo imperios) ->
+#           del ducado capital (imperios y reinos) -> del condado capital.
+#           En cada nivel se prueba primero tu vasallo directo que lo
+#           contiene y, si no vale, el propio titular (que pasa a ser tu
+#           vasallo directo antes de recibir el título).
+#   Plan B: el vasallo directo con más condados de iure del título.
+# Siempre: el título principal del receptor debe estar de iure dentro
+# del título repartido (sin bordergore). Si nadie cumple, te lo quedas.
 # Tras el reparto, los vasallos de iure pasan al receptor y se ordenan
 # bajo él.
 # Parámetros:
@@ -174,6 +180,24 @@ rtg_distribute_titles_effect = {
 		save_scope_as = rtg_title
 		root = {
 			rtg_find_recipient_effect = yes
+			if = {
+				limit = {
+					exists = scope:rtg_recipient
+					NOT = { scope:rtg_recipient.liege = root }
+				}
+				create_title_and_vassal_change = {
+					type = swear_fealty
+					save_scope_as = rtg_change
+					add_claim_on_loss = no
+				}
+				scope:rtg_recipient = {
+					change_liege = {
+						liege = root
+						change = scope:rtg_change
+					}
+				}
+				resolve_title_and_vassal_change = scope:rtg_change
+			}
 			if = {
 				limit = { exists = scope:rtg_recipient }
 				create_title_and_vassal_change = {
@@ -200,20 +224,49 @@ rtg_distribute_titles_effect = {
 # Requiere scope:rtg_title. Deja el receptor en scope:rtg_recipient.
 rtg_find_recipient_effect = {
 	clear_saved_scope = rtg_recipient
-	clear_saved_scope = rtg_cap_holder
-	clear_saved_scope = rtg_candidate
 
+	# Plan A, en cascada desde el subtítulo capital hasta el condado capital
 	if = {
-		limit = { exists = scope:rtg_title.title_capital_county.holder }
-		scope:rtg_title.title_capital_county.holder = { save_scope_as = rtg_cap_holder }
+		limit = { scope:rtg_title.tier = tier_empire }
+		rtg_try_capital_holder_effect = { HOLDER = scope:rtg_title.title_capital_county.kingdom.holder }
+		rtg_try_capital_holder_effect = { HOLDER = scope:rtg_title.title_capital_county.duchy.holder }
 	}
+	else_if = {
+		limit = { scope:rtg_title.tier = tier_kingdom }
+		rtg_try_capital_holder_effect = { HOLDER = scope:rtg_title.title_capital_county.duchy.holder }
+	}
+	rtg_try_capital_holder_effect = { HOLDER = scope:rtg_title.title_capital_county.holder }
 
-	# Plan A: quien gobierna la capital de iure, subiendo hasta tu vasallo directo
+	# Plan B: el vasallo directo válido, con su título principal dentro,
+	# que más condados de iure del título tiene
+	if = {
+		limit = { NOT = { exists = scope:rtg_recipient } }
+		ordered_vassal = {
+			limit = {
+				rtg_valid_recipient_trigger = yes
+				rtg_anchored_in_title_trigger = yes
+				rtg_counties_in_title_value > 0
+			}
+			order_by = rtg_counties_in_title_value
+			save_scope_as = rtg_recipient
+		}
+	}
+}
+
+# Un escalón del plan A. Solo actúa si aún no hay receptor.
+# Parámetro: HOLDER = titular del subtítulo capital a probar
+rtg_try_capital_holder_effect = {
 	if = {
 		limit = {
-			exists = scope:rtg_cap_holder
-			NOT = { scope:rtg_cap_holder = root }
+			NOT = { exists = scope:rtg_recipient }
+			exists = $HOLDER$
+			NOT = { $HOLDER$ = root }
+			$HOLDER$ = { exists = top_liege top_liege = root }
 		}
+		$HOLDER$ = { save_scope_as = rtg_cap_holder }
+		clear_saved_scope = rtg_candidate
+
+		# 1) Tu vasallo directo que contiene a ese titular
 		scope:rtg_cap_holder = {
 			if = {
 				limit = { exists = liege liege = root }
@@ -228,25 +281,25 @@ rtg_find_recipient_effect = {
 				liege.liege = { save_scope_as = rtg_candidate }
 			}
 		}
-	}
-	if = {
-		limit = {
-			exists = scope:rtg_candidate
-			scope:rtg_candidate = { rtg_valid_recipient_trigger = yes }
-		}
-		scope:rtg_candidate = { save_scope_as = rtg_recipient }
-	}
-
-	# Plan B: el vasallo directo válido con más condados de iure del título
-	if = {
-		limit = { NOT = { exists = scope:rtg_recipient } }
-		ordered_vassal = {
+		if = {
 			limit = {
-				rtg_valid_recipient_trigger = yes
-				rtg_counties_in_title_value > 0
+				exists = scope:rtg_candidate
+				scope:rtg_candidate = {
+					rtg_valid_recipient_trigger = yes
+					rtg_anchored_in_title_trigger = yes
+				}
 			}
-			order_by = rtg_counties_in_title_value
-			save_scope_as = rtg_recipient
+			scope:rtg_candidate = { save_scope_as = rtg_recipient }
+		}
+		# 2) Si no vale, el propio titular (p. ej. el conde de la capital)
+		else_if = {
+			limit = {
+				scope:rtg_cap_holder = {
+					rtg_valid_recipient_trigger = yes
+					rtg_anchored_in_title_trigger = yes
+				}
+			}
+			scope:rtg_cap_holder = { save_scope_as = rtg_recipient }
 		}
 	}
 }

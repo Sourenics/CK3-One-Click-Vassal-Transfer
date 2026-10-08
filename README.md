@@ -5,7 +5,7 @@
 A Crusader Kings III mod that lets you reorganize your realm in a single click: grant your counties to brand-new vassals, create every title you are entitled to, and hand duchies, kingdoms and empires to the vassals who rule their de jure capitals.
 
 - **Game version:** 1.20.x
-- **Mod version:** 1.0.0
+- **Mod version:** 1.1.0
 - **Author:** [Sourenics](https://github.com/Sourenics)
 - **Steam Workshop:** [One-Click Vassal Transfer](https://steamcommunity.com/sharedfiles/filedetails/?id=3816024693)
 
@@ -19,13 +19,17 @@ A new **Title Distribution** group in the Decisions tab. Each decision is indepe
 | **Grant Counties (Your Culture)** | Every county in your domain goes to a **brand-new character** of your culture, faith and rite: one county, one new vassal. Courtiers, family and councillors are never used. | Dukes and above |
 | **Grant Counties (Local Culture)** | Same, with a new character of each county's culture, faith and rite. | Dukes and above |
 | **Create Duchies / Kingdoms / Empires** | Creates every title of that rank the game currently lets you create, using the game's own list of creatable titles. Free of charge. | Duchies: dukes and above. Kingdoms: emperors. Empires: hegemons. |
-| **Distribute Duchies / Kingdoms / Empires** | Each title goes to the vassal who rules its **de jure capital** (the Duchy of León to your vassal in León, the Duchy of Toledo to your vassal in Toledo…). If there is none, it goes to the vassal with the most counties in it. Its de jure vassals then move under the new holder and are sorted beneath them (counts under their dukes, dukes under their kings). | Duchies: kings and above. Kingdoms: emperors. Empires: hegemons. |
+| **Distribute Duchies / Kingdoms / Empires** | Each title goes to the vassal who holds its **de jure capital sub-title**, working down until someone qualifies: an empire to the holder of its capital kingdom, then of its capital duchy, then of its capital county; a kingdom to the holder of its capital duchy, then of its capital county; a duchy to the holder of its capital county. As a last resort, it goes to the vassal with the most counties in it. Its de jure vassals then move under the new holder and are sorted beneath them. | Duchies: kings and above. Kingdoms: emperors. Empires: hegemons. |
 
 The **Effects** section of every grant and distribution decision lists each title that will be handed out and who will receive it, before you confirm.
 
 ### Excluding titles
 
 Open any title you hold: a new round button next to **Make Primary** toggles it between ✓ (included) and ✗ (excluded). Excluded titles are never granted or distributed.
+
+### No bordergore
+
+A title is only given to a vassal whose **primary title lies de jure within it**. Where a vassal physically lives does not matter: a Duke of Bavaria who resides in a Saxon county receives the Kingdom of Bavaria, never the Kingdom of Saxony. If no vassal qualifies, you keep the title, and the Effects preview tells you so before you confirm.
 
 ### What is never handed out
 
@@ -58,7 +62,6 @@ Subscribe on the Steam Workshop page and enable the mod in the Paradox launcher.
 - Can be added to or removed from an existing save.
 - Overrides one vanilla file, `gui/window_title.gui`, with a single button added for the exclusion toggle. Other mods that replace the same file, such as **Rise and Fall**, will conflict: only the button of the mod loaded last will appear.
 - All decisions are player-only. The AI never uses them.
-- Achievements are disabled, as with any mod that changes the game checksum.
 
 ## Reporting bugs
 

@@ -33,6 +33,13 @@ rtg_valid_recipient_trigger = {
 	}
 }
 
+# Scope: candidato a recibir scope:rtg_title. Su título principal debe
+# estar de iure dentro del título, para no crear bordergore.
+rtg_anchored_in_title_trigger = {
+	exists = primary_title
+	primary_title = { target_is_de_jure_liege_or_above = scope:rtg_title }
+}
+
 # Scope: vasallo. ¿Se le puede cambiar de señor sin romper nada?
 rtg_can_be_moved_trigger = {
 	NOT = { is_at_war_with = root }
