@@ -7,7 +7,7 @@ A Crusader Kings III mod that lets you reorganize your realm in a single click: 
 - **Game version:** 1.20.x
 - **Mod version:** 1.0.0
 - **Author:** [Sourenics](https://github.com/Sourenics)
-- **Steam Workshop:** _coming soon_
+- **Steam Workshop:** [One-Click Vassal Transfer](https://steamcommunity.com/sharedfiles/filedetails/?id=3816024693)
 
 ## Features
 
