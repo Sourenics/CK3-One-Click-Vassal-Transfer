@@ -65,3 +65,18 @@ rtg_valid_new_liege_trigger = {
 		is_at_war_with = scope:rtg_vassal
 	}
 }
+
+# Scope: vasallo directo de root. ¿"Transferir vasallos" lo movería?
+# Misma lógica que rtg_find_de_jure_liege_effect, en forma de trigger,
+# para ocultar la decisión cuando no hay nada que transferir.
+rtg_vassal_would_transfer_trigger = {
+	is_landed = yes
+	exists = primary_title.de_jure_liege
+	rtg_can_be_moved_trigger = yes
+	save_temporary_scope_as = rtg_vassal
+	root = { save_temporary_scope_as = rtg_liege }
+	OR = {
+		primary_title.de_jure_liege.holder ?= { rtg_valid_new_liege_trigger = yes }
+		primary_title.de_jure_liege.de_jure_liege.holder ?= { rtg_valid_new_liege_trigger = yes }
+	}
+}

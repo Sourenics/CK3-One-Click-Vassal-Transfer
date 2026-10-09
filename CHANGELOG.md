@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.3.0
+
+- Decisions are now hidden when they have nothing to do: no vassal to transfer, no title available to create, or no county or title left to hand out (after exclusions).
+- The county grant decisions show how many new vassals they will create, with a reminder to watch your vassal limit.
+- Players using French, German, Polish, Russian, Simplified Chinese, Korean or Japanese now see the English text instead of raw localization keys.
+- Spanish: game concepts are now lowercased mid-sentence, as in the base game.
+
 ## 1.2.0
 
 - **Transfer Vassals to their De Jure Liege** now lists in its Effects section every vassal that will be transferred and their new liege, before you confirm.

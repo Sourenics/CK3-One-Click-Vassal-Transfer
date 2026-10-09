@@ -11,3 +11,12 @@ rtg_counties_in_title_value = {
 		add = 1
 	}
 }
+
+# Nº de condados que "Otorgar condados" entregaría (= nuevos vasallos).
+rtg_counties_to_grant_value = {
+	value = 0
+	every_held_title = {
+		limit = { rtg_can_grant_county_trigger = yes }
+		add = 1
+	}
+}

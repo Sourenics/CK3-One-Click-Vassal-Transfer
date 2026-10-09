@@ -5,7 +5,7 @@
 A Crusader Kings III mod that lets you reorganize your realm in a single click: grant your counties to brand-new vassals, create every title you are entitled to, and hand duchies, kingdoms and empires to the vassals who rule their de jure capitals.
 
 - **Game version:** 1.20.x
-- **Mod version:** 1.2.0
+- **Mod version:** 1.3.0
 - **Author:** [Sourenics](https://github.com/Sourenics)
 - **Steam Workshop:** [One-Click Vassal Transfer](https://steamcommunity.com/sharedfiles/filedetails/?id=3816024693)
 
@@ -27,6 +27,10 @@ Before you confirm, the **Effects** section of every decision shows exactly what
 
 Open any title you hold: a new round button next to **Make Primary** toggles it between ✓ (included) and ✗ (excluded). Excluded titles are never granted or distributed.
 
+Decisions only appear when they have something to do: no vassal to transfer, no title to create or nothing left to hand out means no button cluttering your Decisions tab.
+
+The county grant decisions tell you how many new vassals they will create and remind you to watch your **vassal limit**. Distribute your duchies afterwards to place the new counts under your dukes.
+
 ### No bordergore
 
 A title is only given to a vassal whose **primary title lies de jure within it**. Where a vassal physically lives does not matter: a Duke of Bavaria who resides in a Saxon county receives the Kingdom of Bavaria, never the Kingdom of Saxony. If no vassal qualifies, you keep the title, and the Effects preview tells you so before you confirm.
@@ -40,6 +44,10 @@ A title is only given to a vassal whose **primary title lies de jure within it**
 ### Who can receive titles
 
 Only adult, free, capable vassals who are not at war with you. Theocratic vassals only receive titles if you are a theocracy yourself. Vassals at war with you, or with a vassal of theirs at war with you, are never moved to a new liege.
+
+### Languages
+
+English and Spanish. Players using any other game language see the English text.
 
 ## Installation
 

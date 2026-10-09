@@ -56,3 +56,4 @@
  rtg_preview_title_to_vassal:0 "[TITLE.GetName] se entrega a [TARGET_CHARACTER.GetShortUIName]"
  rtg_preview_title_no_recipient:0 "[TITLE.GetName] se queda contigo #weak (ningún vasallo válido)#!"
  rtg_preview_vassal_transfer:0 "[CHARACTER.GetShortUIName] jura lealtad a [TARGET_CHARACTER.GetShortUIName]"
+ rtg_vassal_limit_warning_tt:0 "@warning_icon! Se crearán #V [GetPlayer.MakeScope.ScriptValue('rtg_counties_to_grant_value')|0]#! vasallos nuevos. Vigila tu [vassal_limit|El]: reparte después tus ducados para que los nuevos condes queden bajo tus duques."

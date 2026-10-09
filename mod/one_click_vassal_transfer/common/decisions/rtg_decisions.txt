@@ -12,6 +12,8 @@ rtg_transfer_vassals_decision = {
 	is_shown = {
 		is_ai = no
 		highest_held_title_tier >= tier_duchy
+		# Oculta la decisión si no hay nada que hacer
+		any_vassal = { rtg_vassal_would_transfer_trigger = yes }
 	}
 	is_valid = {
 		any_vassal = { is_landed = yes }
@@ -36,6 +38,8 @@ rtg_grant_counties_own_culture_decision = {
 	is_shown = {
 		is_ai = no
 		highest_held_title_tier >= tier_duchy
+		# Oculta la decisión si no hay nada que hacer
+		any_held_title = { rtg_can_grant_county_trigger = yes }
 	}
 	is_valid = {
 		custom_tooltip = {
@@ -45,6 +49,7 @@ rtg_grant_counties_own_culture_decision = {
 	}
 	effect = {
 		custom_tooltip = rtg_grant_counties_own_culture_decision_effect_tt
+		custom_tooltip = rtg_vassal_limit_warning_tt
 		show_as_tooltip = { rtg_preview_counties_effect = yes }
 		hidden_effect = {
 			rtg_grant_counties_to_new_characters_effect = {
@@ -67,6 +72,8 @@ rtg_grant_counties_local_culture_decision = {
 	is_shown = {
 		is_ai = no
 		highest_held_title_tier >= tier_duchy
+		# Oculta la decisión si no hay nada que hacer
+		any_held_title = { rtg_can_grant_county_trigger = yes }
 	}
 	is_valid = {
 		custom_tooltip = {
@@ -76,6 +83,7 @@ rtg_grant_counties_local_culture_decision = {
 	}
 	effect = {
 		custom_tooltip = rtg_grant_counties_local_culture_decision_effect_tt
+		custom_tooltip = rtg_vassal_limit_warning_tt
 		show_as_tooltip = { rtg_preview_counties_effect = yes }
 		hidden_effect = {
 			rtg_grant_counties_to_new_characters_effect = {
@@ -98,6 +106,8 @@ rtg_create_duchies_decision = {
 	is_shown = {
 		is_ai = no
 		highest_held_title_tier >= tier_duchy
+		# Oculta la decisión si no hay nada que hacer
+		any_alert_creatable_title = { tier = tier_duchy }
 	}
 	effect = {
 		custom_tooltip = rtg_create_duchies_decision_effect_tt
@@ -120,6 +130,8 @@ rtg_create_kingdoms_decision = {
 	is_shown = {
 		is_ai = no
 		highest_held_title_tier >= tier_empire
+		# Oculta la decisión si no hay nada que hacer
+		any_alert_creatable_title = { tier = tier_kingdom }
 	}
 	effect = {
 		custom_tooltip = rtg_create_kingdoms_decision_effect_tt
@@ -142,6 +154,8 @@ rtg_create_empires_decision = {
 	is_shown = {
 		is_ai = no
 		highest_held_title_tier > tier_empire
+		# Oculta la decisión si no hay nada que hacer
+		any_alert_creatable_title = { tier = tier_empire }
 	}
 	effect = {
 		custom_tooltip = rtg_create_empires_decision_effect_tt
@@ -164,6 +178,8 @@ rtg_distribute_duchies_decision = {
 	is_shown = {
 		is_ai = no
 		highest_held_title_tier >= tier_kingdom
+		# Oculta la decisión si no hay nada que hacer
+		any_held_title = { tier = tier_duchy rtg_can_distribute_title_trigger = yes }
 	}
 	is_valid = {
 		custom_tooltip = {
@@ -191,6 +207,8 @@ rtg_distribute_kingdoms_decision = {
 	is_shown = {
 		is_ai = no
 		highest_held_title_tier >= tier_empire
+		# Oculta la decisión si no hay nada que hacer
+		any_held_title = { tier = tier_kingdom rtg_can_distribute_title_trigger = yes }
 	}
 	is_valid = {
 		custom_tooltip = {
@@ -218,6 +236,8 @@ rtg_distribute_empires_decision = {
 	is_shown = {
 		is_ai = no
 		highest_held_title_tier > tier_empire
+		# Oculta la decisión si no hay nada que hacer
+		any_held_title = { tier = tier_empire rtg_can_distribute_title_trigger = yes }
 	}
 	is_valid = {
 		custom_tooltip = {
