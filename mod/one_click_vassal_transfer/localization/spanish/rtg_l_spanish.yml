@@ -55,3 +55,4 @@
  rtg_preview_county_new_vassal:0 "[TITLE.GetName] se entrega a un vasallo nuevo"
  rtg_preview_title_to_vassal:0 "[TITLE.GetName] se entrega a [TARGET_CHARACTER.GetShortUIName]"
  rtg_preview_title_no_recipient:0 "[TITLE.GetName] se queda contigo #weak (ningún vasallo válido)#!"
+ rtg_preview_vassal_transfer:0 "[CHARACTER.GetShortUIName] jura lealtad a [TARGET_CHARACTER.GetShortUIName]"

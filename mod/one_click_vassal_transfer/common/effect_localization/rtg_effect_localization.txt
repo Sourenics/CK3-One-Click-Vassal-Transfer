@@ -26,3 +26,12 @@ rtg_preview_title_no_recipient = {
 	third_past = rtg_preview_title_no_recipient
 	global_past = rtg_preview_title_no_recipient
 }
+
+rtg_preview_vassal_transfer = {
+	first = rtg_preview_vassal_transfer
+	third = rtg_preview_vassal_transfer
+	global = rtg_preview_vassal_transfer
+	first_past = rtg_preview_vassal_transfer
+	third_past = rtg_preview_vassal_transfer
+	global_past = rtg_preview_vassal_transfer
+}

@@ -18,6 +18,7 @@ rtg_transfer_vassals_decision = {
 	}
 	effect = {
 		custom_tooltip = rtg_transfer_vassals_decision_effect_tt
+		show_as_tooltip = { rtg_preview_transfer_effect = yes }
 		hidden_effect = { rtg_transfer_vassals_to_de_jure_liege_effect = { LIEGE = root } }
 	}
 	ai_check_interval = 0

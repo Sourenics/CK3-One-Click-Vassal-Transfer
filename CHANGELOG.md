@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.2.0
+
+- **Transfer Vassals to their De Jure Liege** now lists in its Effects section every vassal that will be transferred and their new liege, before you confirm.
+- Transfers are now decided all at once on the realm as it is, then applied. The result always matches the preview, and is no longer affected by the order in which vassals are processed.
+
 ## 1.1.0
 
 - **No more bordergore when distributing titles.** Recipients are now chosen by the titles they hold, not by where they live, and their primary title must lie de jure within the title they receive. A Duke of Bavaria living in a Saxon county now receives the Kingdom of Bavaria, never the Kingdom of Saxony.
