@@ -181,9 +181,11 @@ rtg_create_titles_effect = {
 #           En cada nivel se prueba primero tu vasallo directo que lo
 #           contiene y, si no vale, el propio titular (que pasa a ser tu
 #           vasallo directo antes de recibir el título).
-#   Plan B: el vasallo directo con más condados de iure del título.
-# Siempre: el título principal del receptor debe estar de iure dentro
-# del título repartido (sin bordergore). Si nadie cumple, te lo quedas.
+#   Plan B: cualquier titular de un condado dentro del título (el que
+#           más condados tiene ahí), que pasa a ser tu vasallo directo.
+# Siempre: la capital y el título principal del receptor deben estar de
+# iure dentro del título repartido (sin bordergore). Si nadie cumple,
+# te lo quedas.
 # Tras el reparto, los vasallos de iure pasan al receptor y se ordenan
 # bajo él.
 # Parámetros:
@@ -260,18 +262,24 @@ rtg_find_recipient_effect = {
 	}
 	rtg_try_capital_holder_effect = { HOLDER = scope:rtg_title.title_capital_county.holder }
 
-	# Plan B: el vasallo directo válido, con su título principal dentro,
-	# que más condados de iure del título tiene
+	# Plan B: cualquier personaje de tu reino que posea un condado dentro
+	# del título y cumpla el anclaje; entre ellos, el que más condados
+	# tiene ahí. Es determinista para que la vista previa coincida con el
+	# resultado (un sorteo aleatorio podría elegir a otro al confirmar).
 	if = {
 		limit = { NOT = { exists = scope:rtg_recipient } }
-		ordered_vassal = {
-			limit = {
-				rtg_valid_recipient_trigger = yes
-				rtg_anchored_in_title_trigger = yes
-				rtg_counties_in_title_value > 0
+		scope:rtg_title = {
+			ordered_de_jure_county_holder = {
+				limit = {
+					NOT = { this = root }
+					exists = top_liege
+					top_liege = root
+					rtg_valid_recipient_trigger = yes
+					rtg_anchored_in_title_trigger = yes
+				}
+				order_by = rtg_counties_in_title_value
+				save_scope_as = rtg_recipient
 			}
-			order_by = rtg_counties_in_title_value
-			save_scope_as = rtg_recipient
 		}
 	}
 }

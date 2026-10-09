@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.3.1
+
+- **Fixed:** titles were still given to vassals living outside them. A recipient must now **reside** inside the title (their capital lies de jure within it) as well as hold their primary title there. A Duke of Bavaria living in Saxony no longer receives the Kingdom of Bavaria.
+- The last-resort recipient is now whoever in your realm holds the most counties inside the title, not only your direct vassals. They become your direct vassal first.
+- **Fixed:** noble family titles (administrative, celestial, sōryō and ritsuryō governments), nomad titles, mercenary companies and holy orders are no longer offered for granting or distribution. The exclusion button is hidden on noble family titles.
+
 ## 1.3.0
 
 - Decisions are now hidden when they have nothing to do: no vassal to transfer, no title available to create, or no county or title left to hand out (after exclusions).

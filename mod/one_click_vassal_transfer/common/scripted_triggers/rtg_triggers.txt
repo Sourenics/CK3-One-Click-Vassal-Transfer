@@ -2,9 +2,23 @@
 # Reparto de Títulos - triggers
 # =====================================================================
 
+# Scope: título. Excluye los títulos que el juego gestiona por su cuenta:
+# títulos de familia noble (gobiernos administrativo, celestial, sōryō y
+# ritsuryō), de nómadas y otros títulos sin tierras, compañías de
+# mercenarios y órdenes sagradas.
+rtg_is_regular_landed_title_trigger = {
+	is_landless_type_title = no
+	is_noble_family_title = no
+	is_nomad_title = no
+	is_mercenary_company = no
+	is_holy_order = no
+}
+
 # Scope: título que root tiene. ¿Se puede repartir?
 # Nunca el título principal ni el que contiene de iure tu capital.
 rtg_can_distribute_title_trigger = {
+	rtg_is_regular_landed_title_trigger = yes
+	is_titular = no
 	NOT = { has_variable = rtg_excluded_from_distribution }
 	NOT = { this = root.primary_title }
 	NOT = {
@@ -15,6 +29,7 @@ rtg_can_distribute_title_trigger = {
 # Scope: condado que root tiene. ¿Se puede otorgar a un nuevo vasallo?
 rtg_can_grant_county_trigger = {
 	tier = tier_county
+	rtg_is_regular_landed_title_trigger = yes
 	NOT = { has_variable = rtg_excluded_from_distribution }
 	NOT = { this = root.capital_province.county }
 }
@@ -33,9 +48,13 @@ rtg_valid_recipient_trigger = {
 	}
 }
 
-# Scope: candidato a recibir scope:rtg_title. Su título principal debe
-# estar de iure dentro del título, para no crear bordergore.
+# Scope: candidato a recibir scope:rtg_title. Para evitar bordergore,
+# tanto su capital (donde reside) como su título principal deben estar de
+# iure dentro del título. Un duque de Baviera que vive en Sajonia no
+# cumple para el reino de Baviera.
 rtg_anchored_in_title_trigger = {
+	exists = capital_province
+	capital_province.county = { target_is_de_jure_liege_or_above = scope:rtg_title }
 	exists = primary_title
 	primary_title = { target_is_de_jure_liege_or_above = scope:rtg_title }
 }

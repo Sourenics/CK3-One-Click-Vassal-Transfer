@@ -1318,7 +1318,7 @@ window = {
 							button_round = {
 								name = "rtg_toggle_excluded"
 								datacontext = "[GetScriptedGui( 'rtg_toggle_excluded_gui' )]"
-								visible = "[And( Character.IsLocalPlayer, Not( Or( Title.IsMercenaryCompany, Title.IsHolyOrder ) ) )]"
+								visible = "[And( Character.IsLocalPlayer, Not( Or( Or( Title.IsMercenaryCompany, Title.IsHolyOrder ), Title.IsNobleFamilyTitle ) ) )]"
 								onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( TitleViewWindow.GetTitle.MakeScope ).End )]"
 								tooltip = "rtg_exclude_button_tt"
 
