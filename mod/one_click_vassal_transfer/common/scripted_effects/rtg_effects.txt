@@ -263,8 +263,9 @@ rtg_find_recipient_effect = {
 	rtg_try_capital_holder_effect = { HOLDER = scope:rtg_title.title_capital_county.holder }
 
 	# Plan B: cualquier personaje de tu reino que posea un condado dentro
-	# del título y cumpla el anclaje; entre ellos, el que más condados
-	# tiene ahí. Es determinista para que la vista previa coincida con el
+	# del título y cumpla el anclaje. Gana el que más condados tiene ahí;
+	# en caso de empate, el de mejor opinión hacia ti, después el de mejores
+	# rasgos de lealtad y por último el de más diplomacia. Es determinista para que la vista previa coincida con el
 	# resultado (un sorteo aleatorio podría elegir a otro al confirmar).
 	if = {
 		limit = { NOT = { exists = scope:rtg_recipient } }
@@ -277,7 +278,7 @@ rtg_find_recipient_effect = {
 					rtg_valid_recipient_trigger = yes
 					rtg_anchored_in_title_trigger = yes
 				}
-				order_by = rtg_counties_in_title_value
+				order_by = rtg_recipient_score_value
 				save_scope_as = rtg_recipient
 			}
 		}
@@ -438,3 +439,96 @@ rtg_preview_transfer_effect = {
 		}
 	}
 }
+
+# ---------------------------------------------------------------------
+# 9. ARREGLAR BORDERGORE
+# Paso 1 (rtg_bg_collect_effect): con el reino tal como está, se anotan
+#   - los condados que un vasallo tiene fuera de su región (vuelven a ti)
+#   - los subvasallos con su título principal fuera de la región de su
+#     señor (pasan a ser vasallos directos tuyos)
+# Paso 2: se aplican. La vista previa usa el mismo paso 1.
+# ---------------------------------------------------------------------
+rtg_bg_collect_effect = {
+	every_vassal = {
+		limit = { rtg_bg_vassal_has_bordergore_trigger = yes }
+		save_scope_as = rtg_bg_holder
+		if = {
+			limit = { rtg_bg_has_outside_counties_trigger = yes }
+			every_held_title = {
+				limit = {
+					tier = tier_county
+					rtg_is_regular_landed_title_trigger = yes
+					NOT = { rtg_bg_title_in_region_trigger = yes }
+				}
+				add_to_list = rtg_bg_counties
+			}
+		}
+		every_vassal = {
+			limit = {
+				is_landed = yes
+				rtg_can_be_moved_trigger = yes
+				primary_title = { NOT = { rtg_bg_title_in_region_trigger = yes } }
+			}
+			add_to_list = rtg_bg_subvassals
+		}
+	}
+}
+
+rtg_fix_bordergore_effect = {
+	rtg_bg_collect_effect = yes
+	every_in_list = {
+		list = rtg_bg_counties
+		save_scope_as = rtg_bg_county
+		root = {
+			create_title_and_vassal_change = {
+				type = revoked
+				save_scope_as = rtg_change
+				add_claim_on_loss = no
+			}
+			scope:rtg_bg_county = {
+				change_title_holder_include_vassals = {
+					holder = root
+					change = scope:rtg_change
+					take_baronies = yes
+				}
+			}
+			resolve_title_and_vassal_change = scope:rtg_change
+		}
+	}
+	every_in_list = {
+		list = rtg_bg_subvassals
+		create_title_and_vassal_change = {
+			type = swear_fealty
+			save_scope_as = rtg_change
+			add_claim_on_loss = no
+		}
+		change_liege = {
+			liege = root
+			change = scope:rtg_change
+		}
+		resolve_title_and_vassal_change = scope:rtg_change
+	}
+}
+
+rtg_preview_bordergore_effect = {
+	rtg_bg_collect_effect = yes
+	every_in_list = {
+		list = rtg_bg_counties
+		holder = { save_scope_as = rtg_bg_old_liege }
+		custom_description = {
+			text = rtg_preview_bg_county
+			subject = this
+			object = scope:rtg_bg_old_liege
+		}
+	}
+	every_in_list = {
+		list = rtg_bg_subvassals
+		liege = { save_scope_as = rtg_bg_old_liege }
+		custom_description = {
+			text = rtg_preview_bg_subvassal
+			subject = this
+			object = scope:rtg_bg_old_liege
+		}
+	}
+}
+

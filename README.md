@@ -5,7 +5,7 @@
 A Crusader Kings III mod that lets you reorganize your realm in a single click: grant your counties to brand-new vassals, create every title you are entitled to, and hand duchies, kingdoms and empires to the vassals who rule their de jure capitals.
 
 - **Game version:** 1.20.x
-- **Mod version:** 1.3.1
+- **Mod version:** 1.4.0
 - **Author:** [Sourenics](https://github.com/Sourenics)
 - **Steam Workshop:** [One-Click Vassal Transfer](https://steamcommunity.com/sharedfiles/filedetails/?id=3816024693)
 
@@ -20,6 +20,7 @@ A new **Title Distribution** group in the Decisions tab. Each decision is indepe
 | **Grant Counties (Local Culture)** | Same, with a new character of each county's culture, faith and rite. | Dukes and above |
 | **Create Duchies / Kingdoms / Empires** | Creates every title of that rank the game currently lets you create, using the game's own list of creatable titles. Free of charge. | Duchies: dukes and above. Kingdoms: emperors. Empires: hegemons. |
 | **Distribute Duchies / Kingdoms / Empires** | Each title goes to the vassal who holds its **de jure capital sub-title**, working down until someone qualifies: an empire to the holder of its capital kingdom, then of its capital duchy, then of its capital county; a kingdom to the holder of its capital duchy, then of its capital county; a duchy to the holder of its capital county. As a last resort, it goes to whoever holds the most counties in it. Its de jure vassals then move under the new holder and are sorted beneath them. | Duchies: kings and above. Kingdoms: emperors. Empires: hegemons. |
+| **Fix Bordergore** | Counties your dukes and above hold outside the de jure titles they own return to you, as long as they keep at least one county inside them. Their vassals whose primary title lies outside those titles become your direct vassals. | Kings and above |
 
 Before you confirm, the **Effects** section of every decision shows exactly what will happen: which vassals will swear fealty to whom, and which titles will be handed out and who will receive them.
 
@@ -33,7 +34,7 @@ The county grant decisions tell you how many new vassals they will create and re
 
 ### No bordergore
 
-A title only goes to someone who **resides inside it** (their capital is de jure within the title) **and** whose primary title lies within it. A Duke of Bavaria who lives in a Saxon county does not receive the Kingdom of Bavaria: it goes to the duke or count of its capital instead or, failing that, to whoever holds the most counties in the kingdom. Recipients who are vassals of your vassals first become your direct vassals. If nobody qualifies, you keep the title, and the Effects preview tells you so before you confirm.
+A title only goes to someone who **resides inside it** (their capital is de jure within the title) **and** whose primary title lies within it. A Duke of Bavaria who lives in a Saxon county does not receive the Kingdom of Bavaria: it goes to the duke or count of its capital instead or, failing that, to whoever holds the most counties in the kingdom. Ties are broken by opinion of you (the game caps opinion at +100), then by loyalty traits (loyal, content, trusting versus disloyal, ambitious, arrogant…), then by diplomacy. Recipients who are vassals of your vassals first become your direct vassals. If nobody qualifies, you keep the title, and the Effects preview tells you so before you confirm.
 
 ### What is never handed out
 

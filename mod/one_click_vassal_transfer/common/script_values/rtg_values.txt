@@ -20,3 +20,66 @@ rtg_counties_to_grant_value = {
 		add = 1
 	}
 }
+
+# Opinión del personaje hacia root, por tramos de 10: 0 (−100) … 200 (+100).
+# El juego limita la opinión a ±100, así que no se puede leer más allá.
+rtg_opinion_of_root_value = {
+	value = 0
+	if = { limit = { opinion = { target = root value >= -90 } } add = 10 }
+	if = { limit = { opinion = { target = root value >= -80 } } add = 10 }
+	if = { limit = { opinion = { target = root value >= -70 } } add = 10 }
+	if = { limit = { opinion = { target = root value >= -60 } } add = 10 }
+	if = { limit = { opinion = { target = root value >= -50 } } add = 10 }
+	if = { limit = { opinion = { target = root value >= -40 } } add = 10 }
+	if = { limit = { opinion = { target = root value >= -30 } } add = 10 }
+	if = { limit = { opinion = { target = root value >= -20 } } add = 10 }
+	if = { limit = { opinion = { target = root value >= -10 } } add = 10 }
+	if = { limit = { opinion = { target = root value >= 0 } } add = 10 }
+	if = { limit = { opinion = { target = root value >= 10 } } add = 10 }
+	if = { limit = { opinion = { target = root value >= 20 } } add = 10 }
+	if = { limit = { opinion = { target = root value >= 30 } } add = 10 }
+	if = { limit = { opinion = { target = root value >= 40 } } add = 10 }
+	if = { limit = { opinion = { target = root value >= 50 } } add = 10 }
+	if = { limit = { opinion = { target = root value >= 60 } } add = 10 }
+	if = { limit = { opinion = { target = root value >= 70 } } add = 10 }
+	if = { limit = { opinion = { target = root value >= 80 } } add = 10 }
+	if = { limit = { opinion = { target = root value >= 90 } } add = 10 }
+	if = { limit = { opinion = { target = root value >= 100 } } add = 10 }
+}
+
+# Desempate por personalidad: 0–99, base 50.
+rtg_loyalty_traits_value = {
+	value = 50
+	if = { limit = { has_trait = loyal } add = 30 }
+	if = { limit = { has_trait = content } add = 10 }
+	if = { limit = { has_trait = trusting } add = 5 }
+	if = { limit = { has_trait = humble } add = 3 }
+	if = { limit = { has_trait = just } add = 2 }
+	if = { limit = { has_trait = disloyal } add = -30 }
+	if = { limit = { has_trait = ambitious } add = -15 }
+	if = { limit = { has_trait = arrogant } add = -5 }
+	if = { limit = { has_trait = greedy } add = -3 }
+	if = { limit = { has_trait = fickle } add = -2 }
+	min = 0
+	max = 99
+}
+
+# Orden del último recurso al repartir títulos (scope: candidato).
+#   1) más condados dentro de scope:rtg_title
+#   2) mejor opinión hacia root (tramos de 10)
+#   3) rasgos de lealtad
+#   4) diplomacia
+rtg_recipient_score_value = {
+	value = rtg_counties_in_title_value
+	multiply = 100000
+	add = {
+		value = rtg_opinion_of_root_value
+		multiply = 100
+	}
+	add = rtg_loyalty_traits_value
+	add = {
+		value = diplomacy
+		divide = 100
+	}
+}
+

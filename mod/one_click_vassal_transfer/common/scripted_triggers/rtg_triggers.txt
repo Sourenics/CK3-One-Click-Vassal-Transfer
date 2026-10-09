@@ -99,3 +99,62 @@ rtg_vassal_would_transfer_trigger = {
 		primary_title.de_jure_liege.de_jure_liege.holder ?= { rtg_valid_new_liege_trigger = yes }
 	}
 }
+
+# ---------------------------------------------------------------------
+# ARREGLAR BORDERGORE
+# La "región" de un vasallo son los títulos de duque o superior que
+# posee (normales, no titulares). Requieren scope:rtg_bg_holder.
+# ---------------------------------------------------------------------
+
+# Scope: título. ¿Está de iure dentro de la región de scope:rtg_bg_holder?
+rtg_bg_title_in_region_trigger = {
+	save_temporary_scope_as = rtg_bg_checked
+	scope:rtg_bg_holder = {
+		any_held_title = {
+			tier > tier_county
+			rtg_is_regular_landed_title_trigger = yes
+			is_titular = no
+			save_temporary_scope_as = rtg_bg_region
+			scope:rtg_bg_checked = { target_is_de_jure_liege_or_above = scope:rtg_bg_region }
+		}
+	}
+}
+
+# Scope: vasallo directo de root. ¿Tiene condados propios fuera de su
+# región y, a la vez, al menos uno dentro (para no dejarlo sin tierras)?
+rtg_bg_has_outside_counties_trigger = {
+	highest_held_title_tier > tier_county
+	rtg_can_be_moved_trigger = yes
+	save_temporary_scope_as = rtg_bg_holder
+	any_held_title = {
+		tier = tier_county
+		rtg_is_regular_landed_title_trigger = yes
+		rtg_bg_title_in_region_trigger = yes
+	}
+	any_held_title = {
+		tier = tier_county
+		rtg_is_regular_landed_title_trigger = yes
+		NOT = { rtg_bg_title_in_region_trigger = yes }
+	}
+}
+
+# Scope: vasallo directo de root. ¿Tiene vasallos cuyo título principal
+# está fuera de su región?
+rtg_bg_has_outside_subvassals_trigger = {
+	highest_held_title_tier > tier_county
+	rtg_can_be_moved_trigger = yes
+	save_temporary_scope_as = rtg_bg_holder
+	any_vassal = {
+		is_landed = yes
+		rtg_can_be_moved_trigger = yes
+		primary_title = { NOT = { rtg_bg_title_in_region_trigger = yes } }
+	}
+}
+
+rtg_bg_vassal_has_bordergore_trigger = {
+	OR = {
+		rtg_bg_has_outside_counties_trigger = yes
+		rtg_bg_has_outside_subvassals_trigger = yes
+	}
+}
+

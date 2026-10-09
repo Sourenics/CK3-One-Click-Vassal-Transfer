@@ -254,3 +254,27 @@ rtg_distribute_empires_decision = {
 	ai_potential = { always = no }
 	ai_will_do = { base = 0 }
 }
+
+# 9. Arreglar bordergore
+rtg_fix_bordergore_decision = {
+	picture = { reference = "gfx/interface/illustrations/decisions/decision_misc.dds" }
+	desc = rtg_fix_bordergore_decision_desc
+	selection_tooltip = rtg_fix_bordergore_decision_tooltip
+	decision_group_type = rtg
+
+	is_shown = {
+		is_ai = no
+		highest_held_title_tier >= tier_kingdom
+		# Oculta la decisión si no hay nada que hacer
+		any_vassal = { rtg_bg_vassal_has_bordergore_trigger = yes }
+	}
+	effect = {
+		custom_tooltip = rtg_fix_bordergore_decision_effect_tt
+		show_as_tooltip = { rtg_preview_bordergore_effect = yes }
+		hidden_effect = { rtg_fix_bordergore_effect = yes }
+	}
+	ai_check_interval = 0
+	ai_potential = { always = no }
+	ai_will_do = { base = 0 }
+}
+

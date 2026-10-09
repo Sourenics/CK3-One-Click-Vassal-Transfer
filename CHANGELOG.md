@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.4.0
+
+- **New decision: Fix Bordergore** (kings and above, player only). Counties your vassals hold outside the de jure titles they own return to you, as long as each vassal keeps at least one county inside them. Their vassals whose primary title lies outside those titles become your direct vassals. The Effects section lists every change before you confirm.
+- When several candidates hold the same number of counties in a title being distributed, the tie is now broken by opinion of you, then by loyalty traits, then by diplomacy. Opinion is capped at +100 by the game, so equal opinions fall through to traits.
+
 ## 1.3.1
 
 - **Fixed:** titles were still given to vassals living outside them. A recipient must now **reside** inside the title (their capital lies de jure within it) as well as hold their primary title there. A Duke of Bavaria living in Saxony no longer receives the Kingdom of Bavaria.

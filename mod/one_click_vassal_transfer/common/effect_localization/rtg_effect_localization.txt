@@ -35,3 +35,21 @@ rtg_preview_vassal_transfer = {
 	third_past = rtg_preview_vassal_transfer
 	global_past = rtg_preview_vassal_transfer
 }
+
+rtg_preview_bg_county = {
+	first = rtg_preview_bg_county
+	third = rtg_preview_bg_county
+	global = rtg_preview_bg_county
+	first_past = rtg_preview_bg_county
+	third_past = rtg_preview_bg_county
+	global_past = rtg_preview_bg_county
+}
+
+rtg_preview_bg_subvassal = {
+	first = rtg_preview_bg_subvassal
+	third = rtg_preview_bg_subvassal
+	global = rtg_preview_bg_subvassal
+	first_past = rtg_preview_bg_subvassal
+	third_past = rtg_preview_bg_subvassal
+	global_past = rtg_preview_bg_subvassal
+}
