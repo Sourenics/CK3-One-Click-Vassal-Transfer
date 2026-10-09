@@ -69,6 +69,7 @@ Subscribe on the Steam Workshop page and enable the mod in the Paradox launcher.
 ## Compatibility
 
 - No DLC required.
+- Tested with feudal, clan, administrative, celestial and tribal governments.
 - Can be added to or removed from an existing save.
 - Overrides one vanilla file, `gui/window_title.gui`, with a single button added for the exclusion toggle. Other mods that replace the same file, such as **Rise and Fall**, will conflict: only the button of the mod loaded last will appear.
 - All decisions are player-only. The AI never uses them.
