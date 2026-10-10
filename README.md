@@ -5,7 +5,7 @@
 A Crusader Kings III mod that lets you reorganize your realm in a single click: grant your counties to brand-new vassals, create every title you are entitled to, and hand duchies, kingdoms and empires to the vassals who rule their de jure capitals.
 
 - **Game version:** 1.20.x
-- **Mod version:** 1.4.0
+- **Mod version:** 1.4.1
 - **Author:** [Sourenics](https://github.com/Sourenics)
 - **Steam Workshop:** [One-Click Vassal Transfer](https://steamcommunity.com/sharedfiles/filedetails/?id=3816024693)
 
@@ -49,7 +49,7 @@ Only adult, free, capable vassals who are not at war with you. Theocratic vassal
 
 ### Languages
 
-English and Spanish. Players using any other game language see the English text.
+English, Spanish and Simplified Chinese (translated by 叮咚鸡大狗叫). Players using any other game language see the English text. Translations are welcome: open an [issue](../../issues/new/choose) or post them on the Steam Workshop page.
 
 ## Installation
 
@@ -93,6 +93,8 @@ Please open an [issue](../../issues/new/choose) using the **Bug report** templat
 ## Credits
 
 The idea comes from the title automation decisions of the **Rise and Fall** mod. This mod is an independent reimplementation written from scratch: it does not include Rise and Fall code and does not depend on it. The main difference is that counties always go to newly created characters, never to existing courtiers.
+
+Simplified Chinese translation by **叮咚鸡大狗叫**.
 
 ## License
 

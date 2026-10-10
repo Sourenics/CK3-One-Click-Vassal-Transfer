@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.4.1
+
+- Added Simplified Chinese localization, translated by 叮咚鸡大狗叫.
+
 ## 1.4.0
 
 - **New decision: Fix Bordergore** (kings and above, player only). Counties your vassals hold outside the de jure titles they own return to you, as long as each vassal keeps at least one county inside them. Their vassals whose primary title lies outside those titles become your direct vassals. The Effects section lists every change before you confirm.
