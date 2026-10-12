@@ -49,7 +49,7 @@ Only adult, free, capable vassals who are not at war with you. Theocratic vassal
 
 ### Languages
 
-English, Spanish and Simplified Chinese (translated by 叮咚鸡大狗叫). Players using any other game language see the English text. Translations are welcome: open an [issue](../../issues/new/choose) or post them on the Steam Workshop page.
+English, Spanish, Japanese (translated by [eh6gac4](https://github.com/eh6gac4)) and Simplified Chinese (translated by 叮咚鸡大狗叫). Players using any other game language see the English text. Translations are welcome: open an [issue](../../issues/new/choose) or post them on the Steam Workshop page.
 
 ## Installation
 
@@ -95,6 +95,8 @@ Please open an [issue](../../issues/new/choose) using the **Bug report** templat
 The idea comes from the title automation decisions of the **Rise and Fall** mod. This mod is an independent reimplementation written from scratch: it does not include Rise and Fall code and does not depend on it. The main difference is that counties always go to newly created characters, never to existing courtiers.
 
 Simplified Chinese translation by **叮咚鸡大狗叫**.
+
+Japanese translation by **[eh6gac4](https://github.com/eh6gac4)**.
 
 ## License
 
