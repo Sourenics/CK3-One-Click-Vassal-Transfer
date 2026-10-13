@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.4.3
+
+- Updated for CK3 1.20.1. The title window now uses the 1.20.1 layout (new "same succession as" row, reworked header for clerical regions and holy orders, adjusted text widths), with the exclude/include button in the same place as before. Without this update the mod kept showing the 1.20.0.4 title window.
+
 ## 1.4.2
 
 - Added Japanese localization, translated by [eh6gac4](https://github.com/eh6gac4) (#2).
