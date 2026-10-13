@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.4.2
+
+- Added Japanese localization, translated by [eh6gac4](https://github.com/eh6gac4) (#2).
+- Japanese: "primary title" uses the game's own term, 主要称号.
+
 ## 1.4.1
 
 - Added Simplified Chinese localization, translated by 叮咚鸡大狗叫.

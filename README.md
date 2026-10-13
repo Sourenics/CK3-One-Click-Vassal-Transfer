@@ -5,7 +5,7 @@
 A Crusader Kings III mod that lets you reorganize your realm in a single click: grant your counties to brand-new vassals, create every title you are entitled to, and hand duchies, kingdoms and empires to the vassals who rule their de jure capitals.
 
 - **Game version:** 1.20.x
-- **Mod version:** 1.4.1
+- **Mod version:** 1.4.2
 - **Author:** [Sourenics](https://github.com/Sourenics)
 - **Steam Workshop:** [One-Click Vassal Transfer](https://steamcommunity.com/sharedfiles/filedetails/?id=3816024693)
 
