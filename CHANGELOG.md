@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.4.5
+
+- **Fixed:** the county grant decisions could create republic vassals (for example, for counties whose capital is a city). New vassals now always get your government.
+- New **compatibility patch** for *Combined Titles & Coats of Arms* (in `patches/`). Load it after both mods.
+
 ## 1.4.4
 
 - **Grant Counties (Local Culture)** now creates characters of the county's culture but with **your** faith and rite, instead of the county's faith and rite. **Grant Counties (Your Culture)** is unchanged.

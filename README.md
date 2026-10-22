@@ -5,7 +5,7 @@
 A Crusader Kings III mod that lets you reorganize your realm in a single click: grant your counties to brand-new vassals, create every title you are entitled to, and hand duchies, kingdoms and empires to the vassals who rule their de jure capitals.
 
 - **Game version:** 1.20.x
-- **Mod version:** 1.4.4
+- **Mod version:** 1.4.5
 - **Author:** [Sourenics](https://github.com/Sourenics)
 - **Steam Workshop:** [One-Click Vassal Transfer](https://steamcommunity.com/sharedfiles/filedetails/?id=3816024693)
 
@@ -30,7 +30,7 @@ Open any title you hold: a new round button next to **Make Primary** toggles it 
 
 Decisions only appear when they have something to do: no vassal to transfer, no title to create or nothing left to hand out means no button cluttering your Decisions tab.
 
-The county grant decisions tell you how many new vassals they will create and remind you to watch your **vassal limit**. Distribute your duchies afterwards to place the new counts under your dukes.
+New vassals always get **your government**: a county whose capital is a city no longer turns its new count into a republic. The county grant decisions tell you how many new vassals they will create and remind you to watch your **vassal limit**. Distribute your duchies afterwards to place the new counts under your dukes.
 
 ### No bordergore
 
@@ -72,6 +72,7 @@ Subscribe on the Steam Workshop page and enable the mod in the Paradox launcher.
 - Tested with feudal, clan, administrative, celestial and tribal governments.
 - Can be added to or removed from an existing save.
 - Overrides one vanilla file, `gui/window_title.gui`, with a single button added for the exclusion toggle. Other mods that replace the same file, such as **Rise and Fall**, will conflict: only the button of the mod loaded last will appear.
+- **Combined Titles & Coats of Arms:** use the compatibility patch in [`patches/`](patches) and load it **after** both mods, so the buttons of both mods appear in the title window.
 - All decisions are player-only. The AI never uses them.
 
 ## Reporting bugs

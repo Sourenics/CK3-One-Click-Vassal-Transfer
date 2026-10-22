@@ -131,6 +131,16 @@ rtg_grant_counties_to_new_characters_effect = {
 			}
 			resolve_title_and_vassal_change = scope:rtg_change
 			scope:rtg_new_ruler = {
+				# Aunque government_base = root, el vasallo nuevo puede acabar
+				# con otro gobierno (p. ej., república si la capital del condado
+				# es una ciudad). Recibe siempre el gobierno del actor, igual
+				# que hace vanilla con change_government = top_liege.government_type.
+				if = {
+					limit = {
+						government_type ?= { NOT = { this = root.government_type } }
+					}
+					change_government = root.government_type
+				}
 				add_opinion = { target = root modifier = received_title_county }
 			}
 		}

@@ -1,0 +1,13 @@
+One-Click Vassal Transfer - Combined Titles Compatibility Patch
+Copyright (c) 2026 Sourenics
+https://github.com/Sourenics/CK3-One-Click-Vassal-Transfer
+
+The exclusion button added by One-Click Vassal Transfer is licensed under Creative Commons
+Attribution-ShareAlike 4.0 International (CC BY-SA 4.0):
+https://creativecommons.org/licenses/by-sa/4.0/
+
+The buttons added by Combined Titles & Coats of Arms belong to its author, Tony Ricardo, and
+are included only so that both mods work together. They are not covered by this license.
+
+Crusader Kings III and its content (including the vanilla file gui/window_title.gui on which
+this file is based) are (c) Paradox Interactive AB and are not covered by this license.
