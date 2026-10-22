@@ -138,14 +138,15 @@ rtg_bg_has_outside_counties_trigger = {
 	}
 }
 
-# Scope: vasallo directo de root. ¿Tiene vasallos cuyo título principal
-# está fuera de su región?
+# Scope: vasallo directo de root. ¿Tiene vasallos condes o superiores
+# cuyo título principal está fuera de su región?
 rtg_bg_has_outside_subvassals_trigger = {
 	highest_held_title_tier > tier_county
 	rtg_can_be_moved_trigger = yes
 	save_temporary_scope_as = rtg_bg_holder
 	any_vassal = {
-		is_landed = yes
+		# Los barones no cuentan: solo condes o superiores
+		highest_held_title_tier > tier_barony
 		rtg_can_be_moved_trigger = yes
 		primary_title = { NOT = { rtg_bg_title_in_region_trigger = yes } }
 	}

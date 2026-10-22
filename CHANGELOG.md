@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.4.6
+
+- **Fix Bordergore** no longer takes barons into account. Only vassals of count rank or higher are moved to you; barons (bishops, mayors, barony holders) stay with their liege.
+- **Fixed:** the county grant decisions filled `error.log` with thousands of "Scoped object of type 'character' is not valid" errors while the game built their tooltip. They were harmless but are gone now.
+
 ## 1.4.5
 
 - **Fixed:** the county grant decisions could create republic vassals (for example, for counties whose capital is a city). New vassals now always get your government.

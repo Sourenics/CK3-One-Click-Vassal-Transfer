@@ -60,7 +60,7 @@
  rtg_fix_bordergore_decision:0 "領土の入り組みを解消する"
  rtg_fix_bordergore_decision_desc:0 "封臣が慣習的領土の外に持つ伯爵領を取り戻し、誤った主君に従属する封臣をあなたに直接従属させます。"
  rtg_fix_bordergore_decision_tooltip:0 "封臣の領土の入り組みを整理します。"
- rtg_fix_bordergore_decision_effect_tt:0 "公爵以上の封臣が持つ称号の慣習的領土の外にある伯爵領は、あなたに返還されます。ただし、その封臣が慣習的領土内に伯爵領を少なくとも1つ保持できる場合に限ります。それらの称号の領域外に主要称号を持つ配下の封臣は、あなたの直属の封臣になります。"
+ rtg_fix_bordergore_decision_effect_tt:0 "公爵以上の封臣が持つ称号の慣習的領土の外にある伯爵領は、あなたに返還されます。ただし、その封臣が慣習的領土内に伯爵領を少なくとも1つ保持できる場合に限ります。それらの称号の領域外に主要称号を持つ伯爵以上の配下の封臣は、あなたの直属の封臣になります。男爵は対象外です。"
  rtg_fix_bordergore_decision_confirm:0 "領土の入り組みを解消する"
  rtg_preview_bg_county:0 "[TITLE.GetName]が[TARGET_CHARACTER.GetShortUIName]からあなたに返還されます"
  rtg_preview_bg_subvassal:0 "[CHARACTER.GetShortUIName]は[TARGET_CHARACTER.GetShortUIName]の配下を離れ、あなたに従属します"

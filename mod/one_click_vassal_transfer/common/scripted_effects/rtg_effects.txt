@@ -130,18 +130,23 @@ rtg_grant_counties_to_new_characters_effect = {
 				}
 			}
 			resolve_title_and_vassal_change = scope:rtg_change
-			scope:rtg_new_ruler = {
-				# Aunque government_base = root, el vasallo nuevo puede acabar
-				# con otro gobierno (p. ej., república si la capital del condado
-				# es una ciudad). Recibe siempre el gobierno del actor, igual
-				# que hace vanilla con change_government = top_liege.government_type.
-				if = {
-					limit = {
-						government_type ?= { NOT = { this = root.government_type } }
+			# Aunque government_base = root, el vasallo nuevo puede acabar
+			# con otro gobierno (p. ej., república si la capital del condado
+			# es una ciudad). Recibe siempre el gobierno del actor, igual
+			# que hace vanilla con change_government = top_liege.government_type.
+			# exists evita errores al construir la descripción emergente,
+			# donde el personaje nuevo no llega a existir.
+			if = {
+				limit = { exists = scope:rtg_new_ruler }
+				scope:rtg_new_ruler = {
+					if = {
+						limit = {
+							government_type ?= { NOT = { this = root.government_type } }
+						}
+						change_government = root.government_type
 					}
-					change_government = root.government_type
+					add_opinion = { target = root modifier = received_title_county }
 				}
-				add_opinion = { target = root modifier = received_title_county }
 			}
 		}
 	}
@@ -455,8 +460,9 @@ rtg_preview_transfer_effect = {
 # 9. ARREGLAR BORDERGORE
 # Paso 1 (rtg_bg_collect_effect): con el reino tal como está, se anotan
 #   - los condados que un vasallo tiene fuera de su región (vuelven a ti)
-#   - los subvasallos con su título principal fuera de la región de su
-#     señor (pasan a ser vasallos directos tuyos)
+#   - los subvasallos condes o superiores con su título principal fuera
+#     de la región de su señor (pasan a ser vasallos directos tuyos).
+#     Los barones no se tienen en cuenta.
 # Paso 2: se aplican. La vista previa usa el mismo paso 1.
 # ---------------------------------------------------------------------
 rtg_bg_collect_effect = {
@@ -476,7 +482,8 @@ rtg_bg_collect_effect = {
 		}
 		every_vassal = {
 			limit = {
-				is_landed = yes
+				# Los barones no cuentan: solo condes o superiores
+				highest_held_title_tier > tier_barony
 				rtg_can_be_moved_trigger = yes
 				primary_title = { NOT = { rtg_bg_title_in_region_trigger = yes } }
 			}
