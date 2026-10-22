@@ -145,6 +145,9 @@ rtg_grant_counties_to_new_characters_effect = {
 						}
 						change_government = root.government_type
 					}
+					# Sin capital de reino fijada, el motor no pinta su escudo
+					# en el mapa hasta que la capital se reasigna
+					set_realm_capital = scope:rtg_county
 					add_opinion = { target = root modifier = received_title_county }
 				}
 			}
@@ -254,10 +257,35 @@ rtg_distribute_titles_effect = {
 				}
 				resolve_title_and_vassal_change = scope:rtg_change
 				scope:rtg_recipient = {
+					rtg_ensure_realm_capital_effect = yes
 					add_opinion = { target = root modifier = $OPINION$ }
 				}
 				rtg_move_de_jure_vassals_to_recipient_effect = yes
 			}
+		}
+	}
+}
+
+# Scope: personaje que acaba de recibir un título. Vuelve a fijar su
+# capital de reino (o le asigna una si no la tiene): sin ella el motor no
+# pinta su escudo en el mapa hasta que la capital se reasigna.
+rtg_ensure_realm_capital_effect = {
+	if = {
+		limit = { exists = capital_county }
+		set_realm_capital = capital_county
+	}
+	else = {
+		ordered_held_title = {
+			limit = {
+				tier = tier_county
+				rtg_is_regular_landed_title_trigger = yes
+			}
+			order_by = development_level
+			save_scope_as = rtg_new_capital
+		}
+		if = {
+			limit = { exists = scope:rtg_new_capital }
+			set_realm_capital = scope:rtg_new_capital
 		}
 	}
 }

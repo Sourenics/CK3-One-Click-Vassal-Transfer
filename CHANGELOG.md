@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.4.7
+
+- **Fixed:** new counts, and vassals receiving distributed duchies, kingdoms or empires, did not show their coat of arms on the map until their realm capital was reassigned. Their realm capital is now set when they receive the title.
+
 ## 1.4.6
 
 - **Fix Bordergore** no longer takes barons into account. Only vassals of count rank or higher are moved to you; barons (bishops, mayors, barony holders) stay with their liege.
