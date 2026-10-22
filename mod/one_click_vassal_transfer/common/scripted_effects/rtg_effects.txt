@@ -92,9 +92,10 @@ rtg_transfer_vassals_to_de_jure_liege_effect = {
 # ---------------------------------------------------------------------
 # 2. OTORGAR DOMINIOS A PERSONAJES NUEVOS
 # Un condado = un personaje nuevo. Nunca se usan cortesanos existentes.
-# Parámetros:
-#   SOURCE = root             -> tu cultura, fe y rito
-#   SOURCE = scope:rtg_county -> cultura, fe y rito del condado
+# Fe y rito: siempre los del actor (root).
+# Parámetro de cultura:
+#   CULTURE_SOURCE = root             -> tu cultura
+#   CULTURE_SOURCE = scope:rtg_county -> cultura del condado
 # ---------------------------------------------------------------------
 rtg_grant_counties_to_new_characters_effect = {
 	every_held_title = {
@@ -107,9 +108,9 @@ rtg_grant_counties_to_new_characters_effect = {
 		root = {
 			create_character = {
 				location = scope:rtg_county.title_province
-				culture = $SOURCE$.culture
-				faith = $SOURCE$.faith
-				rite = $SOURCE$.rite
+				culture = $CULTURE_SOURCE$.culture
+				faith = root.faith
+				rite = root.rite
 				gender_female_chance = root_faith_dominant_gender_female_chance
 				age = { 18 40 }
 				dynasty = generate

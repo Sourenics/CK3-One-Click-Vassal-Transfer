@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.4.4
+
+- **Grant Counties (Local Culture)** now creates characters of the county's culture but with **your** faith and rite, instead of the county's faith and rite. **Grant Counties (Your Culture)** is unchanged.
+
 ## 1.4.3
 
 - Updated for CK3 1.20.1. The title window now uses the 1.20.1 layout (new "same succession as" row, reworked header for clerical regions and holy orders, adjusted text widths), with the exclude/include button in the same place as before. Without this update the mod kept showing the 1.20.0.4 title window.

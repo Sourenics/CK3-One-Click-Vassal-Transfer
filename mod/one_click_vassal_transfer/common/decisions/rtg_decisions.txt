@@ -53,7 +53,7 @@ rtg_grant_counties_own_culture_decision = {
 		show_as_tooltip = { rtg_preview_counties_effect = yes }
 		hidden_effect = {
 			rtg_grant_counties_to_new_characters_effect = {
-				SOURCE = root
+				CULTURE_SOURCE = root
 			}
 		}
 	}
@@ -62,7 +62,7 @@ rtg_grant_counties_own_culture_decision = {
 	ai_will_do = { base = 0 }
 }
 
-# 2b. Otorgar dominios a personajes nuevos de la cultura y fe LOCAL
+# 2b. Otorgar dominios a personajes nuevos de la cultura LOCAL y TU fe
 rtg_grant_counties_local_culture_decision = {
 	picture = { reference = "gfx/interface/illustrations/decisions/decision_misc.dds" }
 	desc = rtg_grant_counties_local_culture_decision_desc
@@ -87,7 +87,7 @@ rtg_grant_counties_local_culture_decision = {
 		show_as_tooltip = { rtg_preview_counties_effect = yes }
 		hidden_effect = {
 			rtg_grant_counties_to_new_characters_effect = {
-				SOURCE = scope:rtg_county
+				CULTURE_SOURCE = scope:rtg_county
 			}
 		}
 	}
