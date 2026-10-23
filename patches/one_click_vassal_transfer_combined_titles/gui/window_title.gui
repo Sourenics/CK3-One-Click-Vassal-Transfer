@@ -34,6 +34,24 @@ window = {
 	vbox = {
 		datacontext = "[TitleViewWindow.GetTitle]"
 
+        widget = {
+            name = "ct_refresh_native_presentation"
+            size = { 0 0 }
+            alwaystransparent = yes
+            state = {
+                name = ct_native_identity
+                trigger_when = "[And( Title.GetHolder.IsValid, Not( EqualTo_string( Title.GetHolder.GetPrimaryTitle.GetNameNoTierNoTooltip, Title.GetHolder.GetPrimaryTitle.GetBaseNameNoTierNoTooltip ) ) )]"
+                on_start = "[GetScriptedGui( Select_CString( And( Not( EqualTo_string( Title.GetHolder.GetPrimaryTitle.GetNameNoTierNoTooltip, Title.GetHolder.GetPrimaryTitle.GetBaseNameNoTierNoTooltip ) ), EqualTo_string( Title.GetHolder.GetPrimaryTitle.GetNameNoTierNoTooltip, Title.GetHolder.GetHouse.GetNameNoTooltip ) ), 'ct_refresh_house_identity', Select_CString( And( Not( EqualTo_string( Title.GetHolder.GetPrimaryTitle.GetNameNoTierNoTooltip, Title.GetHolder.GetPrimaryTitle.GetBaseNameNoTierNoTooltip ) ), EqualTo_string( Title.GetHolder.GetPrimaryTitle.GetNameNoTierNoTooltip, Title.GetHolder.GetDynasty.GetNameNoTooltip ) ), 'ct_refresh_dynasty_identity', 'ct_keep_native_identity' ) ) ).Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).AddScope( 'ct_viewer', GetPlayer.MakeScope ).AddScope( 'ct_holder', Title.GetHolder.MakeScope ).AddScope( 'landed_title', TitleViewWindow.GetTitle.MakeScope ).End )]"
+                on_start = "[GetScriptedGui('ct_refresh_native_presentation').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).AddScope( 'ct_holder', Title.GetHolder.MakeScope ).End )]"
+            }
+            state = {
+                name = ct_territorial_identity
+                trigger_when = "[And( Title.GetHolder.IsValid, EqualTo_string( Title.GetHolder.GetPrimaryTitle.GetNameNoTierNoTooltip, Title.GetHolder.GetPrimaryTitle.GetBaseNameNoTierNoTooltip ) )]"
+                on_start = "[GetScriptedGui('ct_refresh_native_presentation').Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).AddScope( 'ct_holder', Title.GetHolder.MakeScope ).End )]"
+            }
+        }
+
+
 		using = Window_Margins_Sidebar
 
 		### Widget to push down window when viewing a Clerical Region or Holy Order title
@@ -1413,13 +1431,38 @@ window = {
 								}
 							}
 
+
+                            button_round = {
+                                name = "ct_family_coa_toggle"
+                                visible = "[GetScriptedGui('ct_family_coa_control').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).AddScope( 'ct_viewer', GetPlayer.MakeScope ).AddScope( 'ct_holder', Title.GetHolder.MakeScope ).AddScope( 'landed_title', TitleViewWindow.GetTitle.MakeScope ).End )]"
+                                enabled = "[GetScriptedGui('ct_family_coa_control').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).AddScope( 'ct_viewer', GetPlayer.MakeScope ).AddScope( 'ct_holder', Title.GetHolder.MakeScope ).AddScope( 'landed_title', TitleViewWindow.GetTitle.MakeScope ).End )]"
+                                onclick = "[GetScriptedGui( Select_CString( And( Not( EqualTo_string( Title.GetHolder.GetPrimaryTitle.GetNameNoTierNoTooltip, Title.GetHolder.GetPrimaryTitle.GetBaseNameNoTierNoTooltip ) ), EqualTo_string( Title.GetHolder.GetPrimaryTitle.GetNameNoTierNoTooltip, Title.GetHolder.GetHouse.GetNameNoTooltip ) ), 'ct_use_house_identity', Select_CString( And( Not( EqualTo_string( Title.GetHolder.GetPrimaryTitle.GetNameNoTierNoTooltip, Title.GetHolder.GetPrimaryTitle.GetBaseNameNoTierNoTooltip ) ), EqualTo_string( Title.GetHolder.GetPrimaryTitle.GetNameNoTierNoTooltip, Title.GetHolder.GetDynasty.GetNameNoTooltip ) ), 'ct_use_dynasty_identity', 'ct_keep_native_identity' ) ) ).Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).AddScope( 'ct_viewer', GetPlayer.MakeScope ).AddScope( 'ct_holder', Title.GetHolder.MakeScope ).AddScope( 'landed_title', TitleViewWindow.GetTitle.MakeScope ).End )]"
+                                onclick = "[GetScriptedGui( Select_CString( Or( GetScriptedGui('ct_family_coa_is_enabled').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).AddScope( 'ct_viewer', GetPlayer.MakeScope ).AddScope( 'ct_holder', Title.GetHolder.MakeScope ).AddScope( 'landed_title', TitleViewWindow.GetTitle.MakeScope ).End ), And( GetScriptedGui('ct_family_coa_inherits_native').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).AddScope( 'ct_viewer', GetPlayer.MakeScope ).AddScope( 'ct_holder', Title.GetHolder.MakeScope ).AddScope( 'landed_title', TitleViewWindow.GetTitle.MakeScope ).End ), And( Not( EqualTo_string( Title.GetHolder.GetPrimaryTitle.GetNameNoTierNoTooltip, Title.GetHolder.GetPrimaryTitle.GetBaseNameNoTierNoTooltip ) ), Or( EqualTo_string( Title.GetHolder.GetPrimaryTitle.GetNameNoTierNoTooltip, Title.GetHolder.GetHouse.GetNameNoTooltip ), EqualTo_string( Title.GetHolder.GetPrimaryTitle.GetNameNoTierNoTooltip, Title.GetHolder.GetDynasty.GetNameNoTooltip ) ) ) ) ), 'ct_family_coa_disable', 'ct_family_coa_enable' ) ).Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).AddScope( 'ct_viewer', GetPlayer.MakeScope ).AddScope( 'ct_holder', Title.GetHolder.MakeScope ).AddScope( 'landed_title', TitleViewWindow.GetTitle.MakeScope ).End )]"
+                                tooltip = "[SelectLocalization( Or( GetScriptedGui('ct_family_coa_is_enabled').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).AddScope( 'ct_viewer', GetPlayer.MakeScope ).AddScope( 'ct_holder', Title.GetHolder.MakeScope ).AddScope( 'landed_title', TitleViewWindow.GetTitle.MakeScope ).End ), And( GetScriptedGui('ct_family_coa_inherits_native').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).AddScope( 'ct_viewer', GetPlayer.MakeScope ).AddScope( 'ct_holder', Title.GetHolder.MakeScope ).AddScope( 'landed_title', TitleViewWindow.GetTitle.MakeScope ).End ), And( Not( EqualTo_string( Title.GetHolder.GetPrimaryTitle.GetNameNoTierNoTooltip, Title.GetHolder.GetPrimaryTitle.GetBaseNameNoTierNoTooltip ) ), Or( EqualTo_string( Title.GetHolder.GetPrimaryTitle.GetNameNoTierNoTooltip, Title.GetHolder.GetHouse.GetNameNoTooltip ), EqualTo_string( Title.GetHolder.GetPrimaryTitle.GetNameNoTierNoTooltip, Title.GetHolder.GetDynasty.GetNameNoTooltip ) ) ) ) ), 'ct_family_coa_disable_tooltip', 'ct_family_coa_enable_tooltip' )]"
+                                icon = {
+                                    texture = "gfx/interface/icons/combined_titles/ct_coa_exclude.dds"
+                                    visible = "[Or( GetScriptedGui('ct_family_coa_is_enabled').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).AddScope( 'ct_viewer', GetPlayer.MakeScope ).AddScope( 'ct_holder', Title.GetHolder.MakeScope ).AddScope( 'landed_title', TitleViewWindow.GetTitle.MakeScope ).End ), And( GetScriptedGui('ct_family_coa_inherits_native').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).AddScope( 'ct_viewer', GetPlayer.MakeScope ).AddScope( 'ct_holder', Title.GetHolder.MakeScope ).AddScope( 'landed_title', TitleViewWindow.GetTitle.MakeScope ).End ), And( Not( EqualTo_string( Title.GetHolder.GetPrimaryTitle.GetNameNoTierNoTooltip, Title.GetHolder.GetPrimaryTitle.GetBaseNameNoTierNoTooltip ) ), Or( EqualTo_string( Title.GetHolder.GetPrimaryTitle.GetNameNoTierNoTooltip, Title.GetHolder.GetHouse.GetNameNoTooltip ), EqualTo_string( Title.GetHolder.GetPrimaryTitle.GetNameNoTierNoTooltip, Title.GetHolder.GetDynasty.GetNameNoTooltip ) ) ) ) )]"
+                                    size = { 28 28 }
+                                    parentanchor = center
+                                    alwaystransparent = yes
+                                }
+                                icon = {
+                                    texture = "gfx/interface/icons/combined_titles/ct_coa_include.dds"
+                                    visible = "[Not( Or( GetScriptedGui('ct_family_coa_is_enabled').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).AddScope( 'ct_viewer', GetPlayer.MakeScope ).AddScope( 'ct_holder', Title.GetHolder.MakeScope ).AddScope( 'landed_title', TitleViewWindow.GetTitle.MakeScope ).End ), And( GetScriptedGui('ct_family_coa_inherits_native').IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).AddScope( 'ct_viewer', GetPlayer.MakeScope ).AddScope( 'ct_holder', Title.GetHolder.MakeScope ).AddScope( 'landed_title', TitleViewWindow.GetTitle.MakeScope ).End ), And( Not( EqualTo_string( Title.GetHolder.GetPrimaryTitle.GetNameNoTierNoTooltip, Title.GetHolder.GetPrimaryTitle.GetBaseNameNoTierNoTooltip ) ), Or( EqualTo_string( Title.GetHolder.GetPrimaryTitle.GetNameNoTierNoTooltip, Title.GetHolder.GetHouse.GetNameNoTooltip ), EqualTo_string( Title.GetHolder.GetPrimaryTitle.GetNameNoTierNoTooltip, Title.GetHolder.GetDynasty.GetNameNoTooltip ) ) ) ) ) )]"
+                                    size = { 28 28 }
+                                    parentanchor = center
+                                    alwaystransparent = yes
+                                }
+
+                            }
+
                             button_round = {
                                 name = "ct_coa_exclude"
                                 datacontext = "[GetScriptedGui('ct_coa_exclude')]"
                                 visible = "[ScriptedGui.IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).AddScope( 'ct_viewer', GetPlayer.MakeScope ).AddScope( 'ct_holder', Title.GetHolder.MakeScope ).AddScope( 'landed_title', TitleViewWindow.GetTitle.MakeScope ).End )]"
                                 enabled = "[ScriptedGui.IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).AddScope( 'ct_viewer', GetPlayer.MakeScope ).AddScope( 'ct_holder', Title.GetHolder.MakeScope ).AddScope( 'landed_title', TitleViewWindow.GetTitle.MakeScope ).End )]"
                                 onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).AddScope( 'ct_viewer', GetPlayer.MakeScope ).AddScope( 'ct_holder', Title.GetHolder.MakeScope ).AddScope( 'landed_title', TitleViewWindow.GetTitle.MakeScope ).End )]"
-                                tooltip = "ct_coa_exclude_tooltip"
+                                tooltip = "[Localize('ct_coa_exclude_tooltip')]"
                                 icon = { texture = "gfx/interface/icons/combined_titles/ct_coa_exclude.dds" size = { 28 28 } parentanchor = center alwaystransparent = yes }
                             }
 
@@ -1428,8 +1471,9 @@ window = {
                                 datacontext = "[GetScriptedGui('ct_coa_include')]"
                                 visible = "[ScriptedGui.IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).AddScope( 'ct_viewer', GetPlayer.MakeScope ).AddScope( 'ct_holder', Title.GetHolder.MakeScope ).AddScope( 'landed_title', TitleViewWindow.GetTitle.MakeScope ).End )]"
                                 enabled = "[ScriptedGui.IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).AddScope( 'ct_viewer', GetPlayer.MakeScope ).AddScope( 'ct_holder', Title.GetHolder.MakeScope ).AddScope( 'landed_title', TitleViewWindow.GetTitle.MakeScope ).End )]"
+                                onclick = "[GetScriptedGui( Select_CString( And( Not( EqualTo_string( Title.GetHolder.GetPrimaryTitle.GetNameNoTierNoTooltip, Title.GetHolder.GetPrimaryTitle.GetBaseNameNoTierNoTooltip ) ), EqualTo_string( Title.GetHolder.GetPrimaryTitle.GetNameNoTierNoTooltip, Title.GetHolder.GetHouse.GetNameNoTooltip ) ), 'ct_use_house_identity', Select_CString( And( Not( EqualTo_string( Title.GetHolder.GetPrimaryTitle.GetNameNoTierNoTooltip, Title.GetHolder.GetPrimaryTitle.GetBaseNameNoTierNoTooltip ) ), EqualTo_string( Title.GetHolder.GetPrimaryTitle.GetNameNoTierNoTooltip, Title.GetHolder.GetDynasty.GetNameNoTooltip ) ), 'ct_use_dynasty_identity', 'ct_keep_native_identity' ) ) ).Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).AddScope( 'ct_viewer', GetPlayer.MakeScope ).AddScope( 'ct_holder', Title.GetHolder.MakeScope ).End )]"
                                 onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).AddScope( 'ct_viewer', GetPlayer.MakeScope ).AddScope( 'ct_holder', Title.GetHolder.MakeScope ).AddScope( 'landed_title', TitleViewWindow.GetTitle.MakeScope ).End )]"
-                                tooltip = "ct_coa_include_tooltip"
+                                tooltip = "[Localize('ct_coa_include_tooltip')]"
                                 icon = { texture = "gfx/interface/icons/combined_titles/ct_coa_include.dds" size = { 28 28 } parentanchor = center alwaystransparent = yes }
                             }
 
@@ -1439,7 +1483,7 @@ window = {
                                 visible = "[ScriptedGui.IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).AddScope( 'ct_viewer', GetPlayer.MakeScope ).AddScope( 'ct_holder', Title.GetHolder.MakeScope ).AddScope( 'landed_title', TitleViewWindow.GetTitle.MakeScope ).End )]"
                                 enabled = "[ScriptedGui.IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).AddScope( 'ct_viewer', GetPlayer.MakeScope ).AddScope( 'ct_holder', Title.GetHolder.MakeScope ).AddScope( 'landed_title', TitleViewWindow.GetTitle.MakeScope ).End )]"
                                 onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).AddScope( 'ct_viewer', GetPlayer.MakeScope ).AddScope( 'ct_holder', Title.GetHolder.MakeScope ).AddScope( 'landed_title', TitleViewWindow.GetTitle.MakeScope ).End )]"
-                                tooltip = "ct_coa_curate_england_tooltip"
+                                tooltip = "[Localize('ct_coa_curate_england_tooltip')]"
                                 raw_text = "E/F"
                             }
 
@@ -1449,7 +1493,7 @@ window = {
                                 visible = "[ScriptedGui.IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).AddScope( 'ct_viewer', GetPlayer.MakeScope ).AddScope( 'ct_holder', Title.GetHolder.MakeScope ).AddScope( 'landed_title', TitleViewWindow.GetTitle.MakeScope ).End )]"
                                 enabled = "[ScriptedGui.IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).AddScope( 'ct_viewer', GetPlayer.MakeScope ).AddScope( 'ct_holder', Title.GetHolder.MakeScope ).AddScope( 'landed_title', TitleViewWindow.GetTitle.MakeScope ).End )]"
                                 onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).AddScope( 'ct_viewer', GetPlayer.MakeScope ).AddScope( 'ct_holder', Title.GetHolder.MakeScope ).AddScope( 'landed_title', TitleViewWindow.GetTitle.MakeScope ).End )]"
-                                tooltip = "ct_coa_original_england_tooltip"
+                                tooltip = "[Localize('ct_coa_original_england_tooltip')]"
                                 raw_text = "CoA"
                             }
 
@@ -1458,8 +1502,9 @@ window = {
                                 datacontext = "[GetScriptedGui('ct_add_title')]"
                                 visible = "[ScriptedGui.IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).AddScope( 'ct_viewer', GetPlayer.MakeScope ).AddScope( 'ct_holder', Title.GetHolder.MakeScope ).AddScope( 'landed_title', TitleViewWindow.GetTitle.MakeScope ).End )]"
                                 enabled = "[ScriptedGui.IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).AddScope( 'ct_viewer', GetPlayer.MakeScope ).AddScope( 'ct_holder', Title.GetHolder.MakeScope ).AddScope( 'landed_title', TitleViewWindow.GetTitle.MakeScope ).End )]"
+                                onclick = "[GetScriptedGui( Select_CString( And( Not( EqualTo_string( Title.GetHolder.GetPrimaryTitle.GetNameNoTierNoTooltip, Title.GetHolder.GetPrimaryTitle.GetBaseNameNoTierNoTooltip ) ), EqualTo_string( Title.GetHolder.GetPrimaryTitle.GetNameNoTierNoTooltip, Title.GetHolder.GetHouse.GetNameNoTooltip ) ), 'ct_use_house_identity', Select_CString( And( Not( EqualTo_string( Title.GetHolder.GetPrimaryTitle.GetNameNoTierNoTooltip, Title.GetHolder.GetPrimaryTitle.GetBaseNameNoTierNoTooltip ) ), EqualTo_string( Title.GetHolder.GetPrimaryTitle.GetNameNoTierNoTooltip, Title.GetHolder.GetDynasty.GetNameNoTooltip ) ), 'ct_use_dynasty_identity', 'ct_keep_native_identity' ) ) ).Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).AddScope( 'ct_viewer', GetPlayer.MakeScope ).AddScope( 'ct_holder', Title.GetHolder.MakeScope ).End )]"
                                 onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).AddScope( 'ct_viewer', GetPlayer.MakeScope ).AddScope( 'ct_holder', Title.GetHolder.MakeScope ).AddScope( 'landed_title', TitleViewWindow.GetTitle.MakeScope ).End )]"
-                                tooltip = "ct_add_tooltip"
+                                tooltip = "[Localize('ct_add_tooltip')]"
                                 button_add_laws = {
                                     parentanchor = center
                                     alwaystransparent = yes
@@ -1472,7 +1517,7 @@ window = {
                                 visible = "[ScriptedGui.IsShown( GuiScope.SetRoot( GetPlayer.MakeScope ).AddScope( 'ct_viewer', GetPlayer.MakeScope ).AddScope( 'ct_holder', Title.GetHolder.MakeScope ).AddScope( 'landed_title', TitleViewWindow.GetTitle.MakeScope ).End )]"
                                 enabled = "[ScriptedGui.IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).AddScope( 'ct_viewer', GetPlayer.MakeScope ).AddScope( 'ct_holder', Title.GetHolder.MakeScope ).AddScope( 'landed_title', TitleViewWindow.GetTitle.MakeScope ).End )]"
                                 onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).AddScope( 'ct_viewer', GetPlayer.MakeScope ).AddScope( 'ct_holder', Title.GetHolder.MakeScope ).AddScope( 'landed_title', TitleViewWindow.GetTitle.MakeScope ).End )]"
-                                tooltip = "ct_remove_tooltip"
+                                tooltip = "[Localize('ct_remove_tooltip')]"
                                 button_remove_laws = {
                                     parentanchor = center
                                     alwaystransparent = yes

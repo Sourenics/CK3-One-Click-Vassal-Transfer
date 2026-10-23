@@ -1,5 +1,9 @@
 # Changelog
 
+## Combined Titles compatibility patch 1.0.1
+
+- Updated for *Combined Titles & Coats of Arms* 1.2.0. The patch now carries that version's title window: the family coat of arms toggle, the refresh of house, dynasty or territorial identity when the window opens, and its reworked button tooltips. Without this update, loading the patch hid those features. The mod itself is unchanged (still 1.4.7).
+
 ## 1.4.7
 
 - **Fixed:** new counts, and vassals receiving distributed duchies, kingdoms or empires, did not show their coat of arms on the map until their realm capital was reassigned. Their realm capital is now set when they receive the title.
