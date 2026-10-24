@@ -5,7 +5,7 @@
 A Crusader Kings III mod that lets you reorganize your realm in a single click: grant your counties to brand-new vassals, create every title you are entitled to, and hand duchies, kingdoms and empires to the vassals who rule their de jure capitals.
 
 - **Game version:** 1.20.x
-- **Mod version:** 1.4.7
+- **Mod version:** 1.4.8
 - **Author:** [Sourenics](https://github.com/Sourenics)
 - **Steam Workshop:** [One-Click Vassal Transfer](https://steamcommunity.com/sharedfiles/filedetails/?id=3816024693)
 
@@ -30,7 +30,7 @@ Open any title you hold: a new round button next to **Make Primary** toggles it 
 
 Decisions only appear when they have something to do: no vassal to transfer, no title to create or nothing left to hand out means no button cluttering your Decisions tab.
 
-New vassals always get **your government**: a county whose capital is a city no longer turns its new count into a republic. The county grant decisions tell you how many new vassals they will create and remind you to watch your **vassal limit**. Distribute your duchies afterwards to place the new counts under your dukes.
+New vassals always get **your government**: a county whose capital is a city no longer turns its new count into a republic. Under Celestial and other Merit-based governments, new vassals start at **Merit rank 1**, the rank a county requires, so granting counties does not count as appointing low-Merit governors. The county grant decisions tell you how many new vassals they will create and remind you to watch your **vassal limit**. Distribute your duchies afterwards to place the new counts under your dukes.
 
 ### No bordergore
 

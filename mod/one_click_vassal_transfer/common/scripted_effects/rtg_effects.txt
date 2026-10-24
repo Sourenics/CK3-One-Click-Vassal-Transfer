@@ -93,6 +93,7 @@ rtg_transfer_vassals_to_de_jure_liege_effect = {
 # 2. OTORGAR DOMINIOS A PERSONAJES NUEVOS
 # Un condado = un personaje nuevo. Nunca se usan cortesanos existentes.
 # Fe y rito: siempre los del actor (root).
+# Mérito: en gobiernos con Mérito, el inicial de rango 1.
 # Parámetro de cultura:
 #   CULTURE_SOURCE = root             -> tu cultura
 #   CULTURE_SOURCE = scope:rtg_county -> cultura del condado
@@ -115,6 +116,25 @@ rtg_grant_counties_to_new_characters_effect = {
 				age = { 18 40 }
 				dynasty = generate
 				save_scope_as = rtg_new_ruler
+			}
+			# Gobiernos con Mérito (celestial, meritocrático, administrativo
+			# de la estepa): el personaje nuevo recibe el Mérito inicial que
+			# vanilla da a los candidatos con examen provincial (rango 1, el
+			# que pide un condado). Va antes del cambio de titular para que
+			# on_title_gain ya lo vea con ese rango: si no, el Hijo del Cielo
+			# activaría catalyst_hegemon_appointing_low_merit_governor.
+			if = {
+				limit = {
+					government_allows = merit
+					exists = scope:rtg_new_ruler
+				}
+				scope:rtg_new_ruler = {
+					change_merit = {
+						value = county_starting_merit_value
+						add = age
+						add = learning
+					}
+				}
 			}
 			create_title_and_vassal_change = {
 				type = granted

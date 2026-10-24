@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.4.8
+
+- Under Celestial and other Merit-based governments, the new characters created by the county grant decisions now start with Merit: the same starting amount the game gives AI candidates who passed the provincial examination (rank 1, the rank a county requires). Before, they started at rank 0, so a Son of Heaven granting counties could trigger the Dynastic Cycle penalty for appointing low-Merit governors.
+
 ## Combined Titles compatibility patch 1.0.1
 
 - Updated for *Combined Titles & Coats of Arms* 1.2.0. The patch now carries that version's title window: the family coat of arms toggle, the refresh of house, dynasty or territorial identity when the window opens, and its reworked button tooltips. Without this update, loading the patch hid those features. The mod itself is unchanged (still 1.4.7).
