@@ -55,6 +55,7 @@
  rtg_preview_county_new_vassal:0 "[TITLE.GetName]を新たな封臣に与えます"
  rtg_preview_title_to_vassal:0 "[TITLE.GetName]を[TARGET_CHARACTER.GetShortUIName]に与えます"
  rtg_preview_title_no_recipient:0 "[TITLE.GetName]は引き続きあなたが保有します #weak （適格な封臣がいません）#!"
+ rtg_preview_title_created:0 "[TITLE.GetName]を創設します"
  rtg_preview_vassal_transfer:0 "[CHARACTER.GetShortUIName]は[TARGET_CHARACTER.GetShortUIName]に従属します"
  rtg_vassal_limit_warning_tt:0 "@warning_icon! 新たに#V [GetPlayer.MakeScope.ScriptValue('rtg_counties_to_grant_value')|0]#!人の封臣を任命します。[vassal_limit|E]に注意してください。その後、公爵領を配分して、新たな伯爵たちを公爵の配下に置きましょう。"
  rtg_fix_bordergore_decision:0 "領土の入り組みを解消する"

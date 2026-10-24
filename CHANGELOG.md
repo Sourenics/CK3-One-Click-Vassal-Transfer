@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.5.0
+
+- **Create Duchies / Kingdoms / Empires** now list in their Effects section every title they are about to create, like the other decisions already do.
+
 ## 1.4.8
 
 - Under Celestial and other Merit-based governments, the new characters created by the county grant decisions now start with Merit: the same starting amount the game gives AI candidates who passed the provincial examination (rank 1, the rank a county requires). Before, they started at rank 0, so a Son of Heaven granting counties could trigger the Dynastic Cycle penalty for appointing low-Merit governors.

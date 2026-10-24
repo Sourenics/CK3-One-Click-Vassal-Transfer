@@ -53,3 +53,12 @@ rtg_preview_bg_subvassal = {
 	third_past = rtg_preview_bg_subvassal
 	global_past = rtg_preview_bg_subvassal
 }
+
+rtg_preview_title_created = {
+	first = rtg_preview_title_created
+	third = rtg_preview_title_created
+	global = rtg_preview_title_created
+	first_past = rtg_preview_title_created
+	third_past = rtg_preview_title_created
+	global_past = rtg_preview_title_created
+}

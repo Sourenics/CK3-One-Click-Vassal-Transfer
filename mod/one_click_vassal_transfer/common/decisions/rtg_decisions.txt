@@ -111,6 +111,7 @@ rtg_create_duchies_decision = {
 	}
 	effect = {
 		custom_tooltip = rtg_create_duchies_decision_effect_tt
+		show_as_tooltip = { rtg_preview_create_titles_effect = { ITER = duchy } }
 		hidden_effect = {
 			rtg_create_titles_effect = { ITER = duchy }
 		}
@@ -135,6 +136,7 @@ rtg_create_kingdoms_decision = {
 	}
 	effect = {
 		custom_tooltip = rtg_create_kingdoms_decision_effect_tt
+		show_as_tooltip = { rtg_preview_create_titles_effect = { ITER = kingdom } }
 		hidden_effect = {
 			rtg_create_titles_effect = { ITER = kingdom }
 		}
@@ -159,6 +161,7 @@ rtg_create_empires_decision = {
 	}
 	effect = {
 		custom_tooltip = rtg_create_empires_decision_effect_tt
+		show_as_tooltip = { rtg_preview_create_titles_effect = { ITER = empire } }
 		hidden_effect = {
 			rtg_create_titles_effect = { ITER = empire }
 		}

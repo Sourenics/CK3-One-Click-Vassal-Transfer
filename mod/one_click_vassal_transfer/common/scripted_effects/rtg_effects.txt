@@ -457,6 +457,19 @@ rtg_preview_counties_effect = {
 	}
 }
 
+# Vista previa de "Crear ducados/reinos/imperios": la misma lista de
+# títulos creables que usa rtg_create_titles_effect.
+# Parámetro: ITER = duchy / kingdom / empire
+rtg_preview_create_titles_effect = {
+	every_alert_creatable_title = {
+		limit = { tier = tier_$ITER$ }
+		custom_description = {
+			text = rtg_preview_title_created
+			subject = this
+		}
+	}
+}
+
 # Parámetro: TIER = tier_duchy / tier_kingdom / tier_empire
 rtg_preview_distribution_effect = {
 	every_held_title = {

@@ -55,6 +55,7 @@
  rtg_preview_county_new_vassal:0 "[TITLE.GetName]将授予一名新封臣"
  rtg_preview_title_to_vassal:0 "[TITLE.GetName]将授予[TARGET_CHARACTER.GetShortUIName]"
  rtg_preview_title_no_recipient:0 "[TITLE.GetName]仍在你麾下 #weak (非有效封臣)#!"
+ rtg_preview_title_created:0 "你将创建[TITLE.GetName]"
  rtg_preview_vassal_transfer:0 "[CHARACTER.GetShortUIName]向[TARGET_CHARACTER.GetShortUIName]宣誓效忠"
  rtg_vassal_limit_warning_tt:0 "@warning_icon!这将创建#V [GetPlayer.MakeScope.ScriptValue('rtg_counties_to_grant_value')|0]#!个新封臣。请注意你的[vassal_limit|E]:之后再分封你的公国，将新伯国置于你的公国之下。"
  rtg_fix_bordergore_decision:0 "修复边界混乱"

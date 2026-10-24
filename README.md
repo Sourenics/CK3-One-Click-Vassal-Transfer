@@ -5,7 +5,7 @@
 A Crusader Kings III mod that lets you reorganize your realm in a single click: grant your counties to brand-new vassals, create every title you are entitled to, and hand duchies, kingdoms and empires to the vassals who rule their de jure capitals.
 
 - **Game version:** 1.20.x
-- **Mod version:** 1.4.8
+- **Mod version:** 1.5.0
 - **Author:** [Sourenics](https://github.com/Sourenics)
 - **Steam Workshop:** [One-Click Vassal Transfer](https://steamcommunity.com/sharedfiles/filedetails/?id=3816024693)
 
@@ -22,7 +22,7 @@ A new **Title Distribution** group in the Decisions tab. Each decision is indepe
 | **Distribute Duchies / Kingdoms / Empires** | Each title goes to the vassal who holds its **de jure capital sub-title**, working down until someone qualifies: an empire to the holder of its capital kingdom, then of its capital duchy, then of its capital county; a kingdom to the holder of its capital duchy, then of its capital county; a duchy to the holder of its capital county. As a last resort, it goes to whoever holds the most counties in it. Its de jure vassals then move under the new holder and are sorted beneath them. | Duchies: kings and above. Kingdoms: emperors. Empires: hegemons. |
 | **Fix Bordergore** | Counties your dukes and above hold outside the de jure titles they own return to you, as long as they keep at least one county inside them. Their vassals of count rank or higher whose primary title lies outside those titles become your direct vassals. Barons are not affected. | Kings and above |
 
-Before you confirm, the **Effects** section of every decision shows exactly what will happen: which vassals will swear fealty to whom, and which titles will be handed out and who will receive them.
+Before you confirm, the **Effects** section of every decision shows exactly what will happen: which vassals will swear fealty to whom, which titles will be created, and which titles will be handed out and who will receive them.
 
 ### Excluding titles
 
