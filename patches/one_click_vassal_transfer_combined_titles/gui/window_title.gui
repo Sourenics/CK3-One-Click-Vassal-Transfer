@@ -296,8 +296,9 @@ window = {
 										visible = "[TitleViewWindow.GetTitle.CanPlayerCustomizeTitle]"
 
 										onclick = "[OpenTitleCustomizationWindow(TitleViewWindow.GetTitle)]"
+                                        enabled = "[GetScriptedGui('ct_customization_allowed').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
 
-										tooltip = "CUSTOMIZE_TITLE"
+										tooltip = "[SelectLocalization( GetScriptedGui('ct_customization_allowed').IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).End ), 'CUSTOMIZE_TITLE', 'ct_customization_disabled_tooltip' )]"
 									}
 
 									expand = {}
@@ -1484,7 +1485,7 @@ window = {
                                 enabled = "[ScriptedGui.IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).AddScope( 'ct_viewer', GetPlayer.MakeScope ).AddScope( 'ct_holder', Title.GetHolder.MakeScope ).AddScope( 'landed_title', TitleViewWindow.GetTitle.MakeScope ).End )]"
                                 onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).AddScope( 'ct_viewer', GetPlayer.MakeScope ).AddScope( 'ct_holder', Title.GetHolder.MakeScope ).AddScope( 'landed_title', TitleViewWindow.GetTitle.MakeScope ).End )]"
                                 tooltip = "[Localize('ct_coa_curate_england_tooltip')]"
-                                raw_text = "E/F"
+                                icon = { texture = "gfx/interface/icons/combined_titles/ct_coa_include.dds" size = { 28 28 } parentanchor = center alwaystransparent = yes }
                             }
 
                             button_round = {
@@ -1494,7 +1495,7 @@ window = {
                                 enabled = "[ScriptedGui.IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).AddScope( 'ct_viewer', GetPlayer.MakeScope ).AddScope( 'ct_holder', Title.GetHolder.MakeScope ).AddScope( 'landed_title', TitleViewWindow.GetTitle.MakeScope ).End )]"
                                 onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).AddScope( 'ct_viewer', GetPlayer.MakeScope ).AddScope( 'ct_holder', Title.GetHolder.MakeScope ).AddScope( 'landed_title', TitleViewWindow.GetTitle.MakeScope ).End )]"
                                 tooltip = "[Localize('ct_coa_original_england_tooltip')]"
-                                raw_text = "CoA"
+                                icon = { texture = "gfx/interface/icons/combined_titles/ct_coa_exclude.dds" size = { 28 28 } parentanchor = center alwaystransparent = yes }
                             }
 
                             button_round = {
@@ -3034,3 +3035,4 @@ types Title
 		expand = {}
 	}
 }
+

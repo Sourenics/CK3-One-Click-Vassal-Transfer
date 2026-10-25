@@ -1,5 +1,9 @@
 # Changelog
 
+## Combined Titles compatibility patch 1.0.2
+
+- Updated for *Combined Titles & Coats of Arms* 1.2.1. The patch now carries that version's title window: the **Customize title** button follows Combined Titles' new title customization game rule (with its tooltip when the rule disables it), and the England coat of arms buttons show icons instead of the "E/F" and "CoA" text. Without this update, loading the patch kept the 1.2.0 window. The mod itself is unchanged (still 1.5.0).
+
 ## 1.5.0
 
 - **Create Duchies / Kingdoms / Empires** now list in their Effects section every title they are about to create, like the other decisions already do.
