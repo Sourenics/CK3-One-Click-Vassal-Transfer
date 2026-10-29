@@ -61,7 +61,7 @@
  rtg_fix_bordergore_decision:0 "修复边界混乱"
  rtg_fix_bordergore_decision_desc:0 "收回你的封臣在其法理领地之外所占据的伯国，并让那些效忠于错误领主的封臣直接向你宣誓效忠。"
  rtg_fix_bordergore_decision_tooltip:0 "清除你封臣的边界"
- rtg_fix_bordergore_decision_effect_tt:0 "只要你的公爵及以上级别领主在其领地内至少保留一个伯国，他们所拥有的、法理上不属于他们的伯国就会回归于你。而他们的伯爵及以上级别的封臣，如果其主要头衔不在这些法理的头衔之内，则将成为你的直接封臣。男爵不受影响。"
+ rtg_fix_bordergore_decision_effect_tt:0 "只要你的公爵及以上级别领主在其领地内至少保留一个伯国，他们所拥有的、法理上不属于他们的伯国就会回归于你。而他们的伯爵及以上级别的封臣，如果其主要头衔不在这些法理的头衔之内，则将成为你的直接封臣。男爵不受影响。主要头衔没有自有领地的封臣（如大主教、贵族家族或冒险者）也不受影响。"
  rtg_fix_bordergore_decision_confirm:0 "修复边界混乱"
  rtg_preview_bg_county:0 "[TITLE.GetName]从[TARGET_CHARACTER.GetShortUIName]手中回归于你"
  rtg_preview_bg_subvassal:0 "[CHARACTER.GetShortUIName]脱离[TARGET_CHARACTER.GetShortUIName]并向你效忠"

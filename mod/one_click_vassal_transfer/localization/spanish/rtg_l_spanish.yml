@@ -61,7 +61,7 @@
  rtg_fix_bordergore_decision:0 "Arreglar bordergore"
  rtg_fix_bordergore_decision_desc:0 "Recupera los condados que tus vasallos tienen fuera de sus tierras de iure y haz que los vasallos que sirven al señor equivocado te juren lealtad directamente."
  rtg_fix_bordergore_decision_tooltip:0 "Ordena las fronteras de tus vasallos."
- rtg_fix_bordergore_decision_effect_tt:0 "Los condados que tus duques y superiores tienen fuera de sus títulos de iure vuelven a ti, siempre que conserven al menos un condado dentro de ellos. Sus vasallos de rango condal o superior cuyo título principal está fuera de esos títulos pasan a ser vasallos directos tuyos. Los barones no se ven afectados."
+ rtg_fix_bordergore_decision_effect_tt:0 "Los condados que tus duques y superiores tienen fuera de sus títulos de iure vuelven a ti, siempre que conserven al menos un condado dentro de ellos. Sus vasallos de rango condal o superior cuyo título principal está fuera de esos títulos pasan a ser vasallos directos tuyos. Los barones no se ven afectados. Tampoco se ven afectados los vasallos cuyo título principal no tiene tierras propias, como arzobispos, familias nobles o aventureros."
  rtg_fix_bordergore_decision_confirm:0 "Arreglar bordergore"
  rtg_preview_bg_county:0 "[TITLE.GetName] vuelve a ti desde [TARGET_CHARACTER.GetShortUIName]"
  rtg_preview_bg_subvassal:0 "[CHARACTER.GetShortUIName] deja a [TARGET_CHARACTER.GetShortUIName] y te jura lealtad"

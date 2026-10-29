@@ -1,8 +1,8 @@
 # Changelog
 
-## Combined Titles compatibility patch 1.0.3
+## 1.5.1
 
-- Updated for *Combined Titles & Coats of Arms* 1.3.1. The patch now carries that version's title window, where Combined Titles moved its buttons (add or remove a title, include or exclude a coat of arms, family coat of arms) to a new bar under the title header, together with a preview of the holder's primary title and new buttons to reorder names and coats of arms and change the name separator. Without this update, loading the patch kept the 1.2.1 window and hid those features. The mod itself is unchanged (still 1.5.0).
+- **Fix Bordergore** no longer moves vassals whose primary title has no land of its own: archbishops and cardinals, noble families and adventurers. Their titles are outside the de jure hierarchy, so the decision always counted them as misplaced and made them swear fealty to you, for example an Archbishop of Tarragona serving the King of Aragon.
 
 ## Combined Titles compatibility patch 1.0.2
 

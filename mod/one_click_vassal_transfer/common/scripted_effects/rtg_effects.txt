@@ -523,7 +523,8 @@ rtg_preview_transfer_effect = {
 #   - los condados que un vasallo tiene fuera de su región (vuelven a ti)
 #   - los subvasallos condes o superiores con su título principal fuera
 #     de la región de su señor (pasan a ser vasallos directos tuyos).
-#     Los barones no se tienen en cuenta.
+#     Los barones no se tienen en cuenta, ni los subvasallos cuyo título
+#     principal no tiene tierras (rtg_bg_misplaced_subvassal_trigger).
 # Paso 2: se aplican. La vista previa usa el mismo paso 1.
 # ---------------------------------------------------------------------
 rtg_bg_collect_effect = {
@@ -542,12 +543,7 @@ rtg_bg_collect_effect = {
 			}
 		}
 		every_vassal = {
-			limit = {
-				# Los barones no cuentan: solo condes o superiores
-				highest_held_title_tier > tier_barony
-				rtg_can_be_moved_trigger = yes
-				primary_title = { NOT = { rtg_bg_title_in_region_trigger = yes } }
-			}
+			limit = { rtg_bg_misplaced_subvassal_trigger = yes }
 			add_to_list = rtg_bg_subvassals
 		}
 	}

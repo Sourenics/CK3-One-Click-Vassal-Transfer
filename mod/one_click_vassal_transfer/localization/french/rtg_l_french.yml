@@ -61,7 +61,7 @@
  rtg_fix_bordergore_decision:0 "Fix Bordergore"
  rtg_fix_bordergore_decision_desc:0 "Take back the counties your vassals hold outside their de jure lands, and make vassals placed under the wrong liege swear fealty to you directly."
  rtg_fix_bordergore_decision_tooltip:0 "Clean up your vassals' borders."
- rtg_fix_bordergore_decision_effect_tt:0 "Counties your dukes and above hold outside the de jure titles they own return to you, as long as they keep at least one county inside them. Their vassals of count rank or higher whose primary title lies outside those titles become your direct vassals. Barons are not affected."
+ rtg_fix_bordergore_decision_effect_tt:0 "Counties your dukes and above hold outside the de jure titles they own return to you, as long as they keep at least one county inside them. Their vassals of count rank or higher whose primary title lies outside those titles become your direct vassals. Barons are not affected. Vassals whose primary title has no land of its own, such as archbishops, noble families or adventurers, are not affected either."
  rtg_fix_bordergore_decision_confirm:0 "Fix bordergore"
  rtg_preview_bg_county:0 "[TITLE.GetName] returns to you from [TARGET_CHARACTER.GetShortUIName]"
  rtg_preview_bg_subvassal:0 "[CHARACTER.GetShortUIName] leaves [TARGET_CHARACTER.GetShortUIName] and swears fealty to you"

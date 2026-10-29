@@ -138,18 +138,30 @@ rtg_bg_has_outside_counties_trigger = {
 	}
 }
 
+# Scope: vasallo de scope:rtg_bg_holder. ¿Está mal colocado y debe pasar a
+# ser vasallo directo de root? Su título principal tiene que ser un título
+# normal con tierras: los títulos eclesiásticos y cardenalicios de PAM, de
+# familia noble, de aventurero y demás títulos sin tierras no están en la
+# jerarquía de iure, así que nunca quedarían "dentro" de la región.
+rtg_bg_misplaced_subvassal_trigger = {
+	# Los barones no cuentan: solo condes o superiores
+	highest_held_title_tier > tier_barony
+	rtg_can_be_moved_trigger = yes
+	exists = primary_title
+	primary_title = {
+		rtg_is_regular_landed_title_trigger = yes
+		has_clerical_region = no
+		NOT = { rtg_bg_title_in_region_trigger = yes }
+	}
+}
+
 # Scope: vasallo directo de root. ¿Tiene vasallos condes o superiores
 # cuyo título principal está fuera de su región?
 rtg_bg_has_outside_subvassals_trigger = {
 	highest_held_title_tier > tier_county
 	rtg_can_be_moved_trigger = yes
 	save_temporary_scope_as = rtg_bg_holder
-	any_vassal = {
-		# Los barones no cuentan: solo condes o superiores
-		highest_held_title_tier > tier_barony
-		rtg_can_be_moved_trigger = yes
-		primary_title = { NOT = { rtg_bg_title_in_region_trigger = yes } }
-	}
+	any_vassal = { rtg_bg_misplaced_subvassal_trigger = yes }
 }
 
 rtg_bg_vassal_has_bordergore_trigger = {
