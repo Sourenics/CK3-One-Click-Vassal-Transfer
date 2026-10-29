@@ -1,5 +1,9 @@
 # Changelog
 
+## Combined Titles compatibility patch 1.0.3
+
+- Updated for *Combined Titles & Coats of Arms* 1.3.1. The patch now carries that version's title window, where Combined Titles moved its buttons (add or remove a title, include or exclude a coat of arms, family coat of arms) to a new bar under the title header, together with a preview of the holder's primary title and new buttons to reorder names and coats of arms and change the name separator. Without this update, loading the patch kept the 1.2.1 window and hid those features. The mod itself is unchanged (still 1.5.0).
+
 ## Combined Titles compatibility patch 1.0.2
 
 - Updated for *Combined Titles & Coats of Arms* 1.2.1. The patch now carries that version's title window: the **Customize title** button follows Combined Titles' new title customization game rule (with its tooltip when the rule disables it), and the England coat of arms buttons show icons instead of the "E/F" and "CoA" text. Without this update, loading the patch kept the 1.2.0 window. The mod itself is unchanged (still 1.5.0).
