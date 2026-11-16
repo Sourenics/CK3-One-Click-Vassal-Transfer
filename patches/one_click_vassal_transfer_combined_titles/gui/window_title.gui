@@ -1276,7 +1276,7 @@ button_edit_text = {
                             position = { 0 0 }
                         }
                         text_multi = {
-                            text = "[TitleViewWindow.GetTitle.GetHolder.Custom('CTTitlePreview')]"
+                            text = "[TitleViewWindow.GetTitle.GetHolder.Custom('CTTitlePreviewWithTier')]"
                             tooltipwidget = { using = LandedTitleTooltip }
                             using = Font_Size_Small
                             using = Font_Type_Standard
