@@ -300,7 +300,7 @@ rtg_ensure_realm_capital_effect = {
 				tier = tier_county
 				rtg_is_regular_landed_title_trigger = yes
 			}
-			order_by = development_level
+			order_by = prosperity_level
 			save_scope_as = rtg_new_capital
 		}
 		if = {

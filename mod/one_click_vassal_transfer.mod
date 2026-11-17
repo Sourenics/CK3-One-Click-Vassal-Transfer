@@ -1,4 +1,4 @@
-version="1.5.1"
+version="1.5.2"
 tags={
 	"Gameplay"
 	"Utilities"
@@ -6,5 +6,5 @@ tags={
 }
 name="One-Click Vassal Transfer"
 picture="thumbnail.png"
-supported_version="1.20.*"
+supported_version="1.21.*"
 path="mod/one_click_vassal_transfer"

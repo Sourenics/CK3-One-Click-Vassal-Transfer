@@ -4,8 +4,8 @@
 
 A Crusader Kings III mod that lets you reorganize your realm in a single click: grant your counties to brand-new vassals, create every title you are entitled to, and hand duchies, kingdoms and empires to the vassals who rule their de jure capitals.
 
-- **Game version:** 1.20.x
-- **Mod version:** 1.5.1
+- **Game version:** 1.21.x
+- **Mod version:** 1.5.2
 - **Author:** [Sourenics](https://github.com/Sourenics)
 - **Steam Workshop:** [One-Click Vassal Transfer](https://steamcommunity.com/sharedfiles/filedetails/?id=3816024693)
 
@@ -85,7 +85,7 @@ Please open an [issue](../../issues/new/choose) using the **Bug report** templat
    - **macOS:** `~/Documents/Paradox Interactive/Crusader Kings III/logs/error.log`
 
    The log is overwritten every time the game starts, so copy it right after the problem happens, before launching the game again. Ideally, reproduce the problem in a session with **only One-Click Vassal Transfer enabled**.
-2. **The game version** (shown in the main menu, for example 1.20.1) and **the mod version**.
+2. **The game version** (shown in the main menu, for example 1.21.0) and **the mod version**.
 3. **Your active DLCs** and **your full mod list in load order**.
 4. **Which decision** was involved, and your rank (duke, king, emperor…).
 5. **Steps to reproduce:** what you clicked and what happened, compared to what you expected.

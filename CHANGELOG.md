@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.5.2
+
+- Updated for CK3 1.21 (*Silk & Silver*). The title window now uses the 1.21 layout, with the exclude/include button in the same place as before. Without this update, the title window kept the 1.20 layout and filled `error.log` with errors.
+- County development no longer exists in 1.21: when a vassal who receives a title has no realm capital, their new capital is now the county with the highest prosperity (before, the highest development).
+- The Combined Titles compatibility patch is not updated yet: it will be once *Combined Titles & Coats of Arms* supports 1.21. Until then, do not load it with this version.
+
 ## Combined Titles compatibility patch 1.0.4
 
 - Updated for *Combined Titles & Coats of Arms* 1.3.2. In the title window, the preview of the holder's primary title now uses Combined Titles' new text that keeps the title's rank (for example "Kingdom of …" instead of only the name). Without this update, the preview kept the 1.3.1 format. The mod itself is unchanged (still 1.5.1).
