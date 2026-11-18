@@ -1,5 +1,9 @@
 # Changelog
 
+## Combined Titles compatibility patch 1.0.5
+
+- Updated for CK3 1.21 (*Silk & Silver*) and *Combined Titles & Coats of Arms* 1.3.3, which supports 1.21. The patch now carries that version's title window, built on the 1.21 one, with the exclude/include button in the same place as before. The patch 1.0.4 must not be used with 1.21. The mod itself is unchanged (still 1.5.2).
+
 ## 1.5.2
 
 - Updated for CK3 1.21 (*Silk & Silver*). The title window now uses the 1.21 layout, with the exclude/include button in the same place as before. Without this update, the title window kept the 1.20 layout and filled `error.log` with errors.
